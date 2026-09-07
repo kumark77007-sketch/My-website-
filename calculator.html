@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 25px;
+    }
+
+    nav {
+      background: #333;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    .calculator {
+      background: white;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    input {
+      width: 85%;
+      padding: 12px;
+      margin: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 12px 18px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Calculator 🧮</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="calculator">
+
+    <input type="number" id="num1" placeholder="First Number">
+
+    <input type="number" id="num2" placeholder="Second Number">
+
+    <br>
+
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">−</button>
+    <button onclick="calculate('*')">×</button>
+    <button onclick="calculate('/')">÷</button>
+
+    <br>
+
+    <button onclick="clearCalculator()">Clear</button>
+
+    <div class="result" id="result">
+      Result:
+    </div>
+
+  </div>
+
+  <script>
+    function calculate(operator) {
+
+      let num1 = Number(document.getElementById("num1").value);
+      let num2 = Number(document.getElementById("num2").value);
+      let answer;
+
+      if (operator === "+") {
+        answer = num1 + num2;
+      }
+
+      if (operator === "-") {
+        answer = num1 - num2;
+      }
+
+      if (operator === "*") {
+        answer = num1 * num2;
+      }
+
+      if (operator === "/") {
+        if (num2 === 0) {
+          document.getElementById("result").innerText =
+            "0 se divide nahi kar sakte.";
+          return;
+        }
+
+        answer = num1 / num2;
+      }
+
+      document.getElementById("result").innerText =
+        "Result: " + answer;
+    }
+
+    function clearCalculator() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").innerText = "Result:";
+    }
+  </script>
+
+</body>
+</html>
