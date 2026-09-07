@@ -4,7 +4,23 @@
 <head><meta name="description" content="Kumar ki personal website. Yahan meri website, projects aur information dekhiye.">
  <meta name="keywords" content="Kumar, personal website, web development, HTML, CSS, JavaScript"> <title>Kumar | Meri Personal Website</title>
 <meta name="google-site-verification" content="TWsYbQDet6PLnsCpprMagZHNaKd7NWPe8gqCTyXokQc" />
-  <style>.dark-mode {
+  <style>.projects {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px gray;
+}
+
+.project-card h3 {
+  color: darkblue;
+}.dark-mode {
   background: #222;
   color: white;
 }
@@ -183,7 +199,24 @@ nav a {
   <h2>About Me</h2>
 <section class="contact"><section class="contact" id="contact">
   <h2>Contact Me</h2>
+<section class="projects">
+  <h2>My Projects</h2>
 
+  <div class="project-card">
+    <h3>🌐 My First Website</h3>
+    <p>Ye meri pehli website hai jo maine HTML aur CSS se banayi hai.</p>
+  </div>
+
+  <div class="project-card">
+    <h3>🧮 Calculator</h3>
+    <p>Ye ek simple calculator project hai.</p>
+  </div>
+
+  <div class="project-card">
+    <h3>💻 Web Learning</h3>
+    <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
+  </div>
+</section>
   <p>Email: example@gmail.com</p>
 
   <button onclick="contactMessage()">Contact Me</button>
