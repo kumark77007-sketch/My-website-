@@ -11,7 +11,16 @@
   <label>Name</label>
   <br>
   <input type="text" id="name" required>
+<label>Apna Naam</label>
+<br>
 
+<input type="text" id="name" placeholder="Naam likhein">
+
+<br><br>
+
+<button onclick="greetUser()">Submit</button>
+
+<p id="result"></p>
   <br><br>
 
   <label>Message</label>
@@ -60,5 +69,17 @@ function sendMessage(event) {
   alert("Message successfully received! 🎉");
 }
 </script>
-</body>
+<script>
+function greetUser() {
+  let name = document.getElementById("name").value;
+
+  if (name === "") {
+    alert("Pehle apna naam likhein.");
+    return;
+  }
+
+  document.getElementById("result").innerText =
+    "Hello " + name + "! 👋 Website par aapka swagat hai.";
+}
+</script></body>
 </html>
