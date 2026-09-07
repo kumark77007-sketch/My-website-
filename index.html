@@ -4,7 +4,17 @@
 <head>
   <title>Meri Website</title>
 
-  <style>footer {
+  <style>.hero {
+  background-color: white;
+  padding: 40px 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+.hero p {
+  color: #555;
+}footer {
   background-color: white;
   margin-top: 40px;
   padding: 20px;
@@ -97,7 +107,17 @@ nav a {
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
 </nav>
-<body>
+<body><section id="home" class="hero">
+
+  <img src="photo.jpg" alt="Meri Photo" class="photo">
+
+  <h1>Namaste! 👋</h1>
+
+  <p>Welcome to meri website.</p>
+
+  <button onclick="showMessage()">Click Me</button>
+
+</section>
 
   <img src="photo.jpg" alt="Meri Photo" class="photo">
 
