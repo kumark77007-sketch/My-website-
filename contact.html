@@ -30,7 +30,7 @@
   <br><br>
 
   <button type="submit">Send Message</button>
-
+<button onclick="clearCalculator()">Clear</button>
 </form>
   <label>Name</label>
   <br>
@@ -62,7 +62,11 @@
     <p>Email: example@gmail.com</p>
 
     <a href="index.html">Home</a>
-<script>
+<script>function clearCalculator() {
+  document.getElementById("num1").value = "";
+  document.getElementById("num2").value = "";
+  document.getElementById("result").innerText = "Result: ";
+}
 function sendMessage(event) {
   event.preventDefault();
 
