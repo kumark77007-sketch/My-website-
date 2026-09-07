@@ -1,89 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact</title>
+  <title>Contact Me</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 25px;
+    }
+
+    nav {
+      background: #333;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 12px;
+      margin: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 
-<body><h1>Contact Me</h1>
+<body>
 
-<form><form onsubmit="sendMessage(event)">
+  <header>
+    <h1>Contact Me</h1>
+  </header>
 
-  <label>Name</label>
-  <br>
-  <input type="text" id="name" required>
-<label>Apna Naam</label>
-<br>
-
-<input type="text" id="name" placeholder="Naam likhein">
-
-<br><br>
-
-<button onclick="greetUser()">Submit</button>
-
-<p id="result"></p>
-  <br><br>
-
-  <label>Message</label>
-  <br>
-  <textarea id="message" required></textarea>
-
-  <br><br>
-
-  <button type="submit">Send Message</button>
-<button onclick="clearCalculator()">Clear</button>
-</form>
-  <label>Name</label>
-  <br>
-  <input type="text" name="name" placeholder="Apna naam">
-  
-  <br><br>
-
-  <label>Email</label>
-  <br>
-  <input type="email" name="email" placeholder="Apna email">
-
-  <br><br>
-
-  <label>Message</label>
-  <br>
-  <textarea name="message" placeholder="Apna message"></textarea>
-
-  <br><br>
-
-  <button type="submit">Send Message</button>
-</form>
-
-<br>
-
-<a href="index.html">Home</a>
-
-    <h1>Contact Me 📞</h1>
-
-    <p>Email: example@gmail.com</p>
-
+  <nav>
     <a href="index.html">Home</a>
-<script>function clearCalculator() {
-  document.getElementById("num1").value = "";
-  document.getElementById("num2").value = "";
-  document.getElementById("result").innerText = "Result: ";
-}
-function sendMessage(event) {
-  event.preventDefault();
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="calculator.html">Calculator</a>
+  </nav>
 
-  alert("Message successfully received! 🎉");
-}
-</script>
-<script>
-function greetUser() {
-  let name = document.getElementById("name").value;
+  <div class="card">
+    <h2>Message Bhejo 📩</h2>
 
-  if (name === "") {
-    alert("Pehle apna naam likhein.");
-    return;
-  }
+    <form onsubmit="sendMessage(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
 
-  document.getElementById("result").innerText =
-    "Hello " + name + "! 👋 Website par aapka swagat hai.";
-}
-</script></body>
+      <input type="email" id="email" placeholder="Your Email" required>
+
+      <textarea id="message" rows="5"
+        placeholder="Your Message" required></textarea>
+
+      <br>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+
+      let name = document.getElementById("name").value;
+
+      alert("Thank you, " + name + "! Message received 🎉");
+    }
+  </script>
+
+</body>
 </html>
