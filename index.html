@@ -95,14 +95,28 @@
   .feature {
     margin: 15px 10px;
   }
-    }
+    }.hero h1 {
+  animation: welcome 1.5s ease-in-out;
+}
+
+@keyframes welcome {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>My Website</h1>
+    <h1>🌟 My Website</h1>
     <p>Welcome to my website 👋</p>
   </header>
 
