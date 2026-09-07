@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>About Me</title>
+  <title>About Me</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 25px;
+    }
+
+    nav {
+      background: #333;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .back {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-    <h1>About Me 👨‍💻</h1>
+  <header>
+    <h1>About Me</h1>
+  </header>
 
-    <p>Namaste! Mera naam Kumar hai.</p>
-
-    <p>Main website banana seekh raha hoon.</p>
-
+  <nav>
     <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="calculator.html">Calculator</a>
+  </nav>
+
+  <div class="card">
+    <h2>Namaste! 👋</h2>
+
+    <p>
+      Main website development seekh raha hoon.
+    </p>
+
+    <p>
+      Ye meri pehli personal website hai.
+    </p>
+
+    <a class="back" href="index.html">← Home</a>
+  </div>
 
 </body>
 </html>
