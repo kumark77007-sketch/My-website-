@@ -4,7 +4,17 @@
 <head>
   <title>Meri Website</title>
 
-  <style>.about {
+  <style>.contact {
+  background-color: white;
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+.contact h2 {
+  color: darkblue;
+}.about {
   background-color: white;
   margin: 30px auto;
   padding: 20px;
@@ -55,7 +65,13 @@
   <p>Ye meri pehli beautiful website hai.</p>
 <section class="about">
   <h2>About Me</h2>
+<section class="contact">
+  <h2>Contact Me</h2>
 
+  <p>Email: example@gmail.com</p>
+
+  <button onclick="contactMessage()">Contact Me</button>
+</section>
   <p>
     Namaste! Mera naam Kumar hai.
     Main website banana seekh raha hoon.
@@ -65,7 +81,9 @@
 
   <script>
     function showMessage() {
-      alert("Hello! Aapne button click kiya 🎉");
+    function contactMessage() {
+  alert("Contact page par swagat hai! 📞");
+    }  alert("Hello! Aapne button click kiya 🎉");
     }
   </script>
 
