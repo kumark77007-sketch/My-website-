@@ -4,7 +4,23 @@
 <head>
   <title>Meri Website</title>
 
-  <style>p {
+  <style>.dark-mode {
+  background: #222;
+  color: white;
+}
+
+.dark-mode .hero,
+.dark-mode .about,
+.dark-mode .contact,
+.dark-mode footer {
+  background: #333;
+  color: white;
+}
+
+.dark-mode h1,
+.dark-mode h2 {
+  color: lightblue;
+}p {
   color: #555;
   line-height: 1.6;
 }h1 {
@@ -141,7 +157,7 @@ nav a {
     }
   </style>
 </head>
-<nav>
+<nav><button onclick="toggleDarkMode()">🌙 Dark Mode</button>
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
@@ -179,7 +195,9 @@ nav a {
 </section>
   <button onclick="showMessage()">Click Me</button>
 
-  <script>
+  <script>function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
     function showMessage() {
     function contactMessage() {
   alert("Contact page par swagat hai! 📞");<div id="home">
