@@ -1,246 +1,93 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+<head>
+  <title>My Website</title>
 
-<head><meta name="description" content="Kumar ki personal website. Yahan meri website, projects aur information dekhiye.">
- <meta name="keywords" content="Kumar, personal website, web development, HTML, CSS, JavaScript"> <title>Kumar | Meri Personal Website</title>
-<meta name="google-site-verification" content="TWsYbQDet6PLnsCpprMagZHNaKd7NWPe8gqCTyXokQc" />
-  <style>.projects {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-}
-
-.project-card {
-  background: white;
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px gray;
-}
-
-.project-card h3 {
-  color: darkblue;
-}.dark-mode {
-  background: #222;
-  color: white;
-}
-
-.dark-mode .hero,
-.dark-mode .about,
-.dark-mode .contact,
-.dark-mode footer {
-  background: #333;
-  color: white;
-}
-
-.dark-mode h1,
-.dark-mode h2 {
-  color: lightblue;
-}p {
-  color: #555;
-  line-height: 1.6;
-}h1 {
-  color: darkblue;
-  font-size: 36px;
-  margin-bottom: 10px;
-}button {
-  background-color: blue;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-nav {
-  background-color: white;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 2px 8px gray;
-}
-
-nav a {
-  color: darkblue;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}.hero {
-  background-color: white;
-  padding: 40px 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 20px;
-}
-
-.hero p {
-  color: #555;
-}footer {
-  background-color: white;
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
-}
-
-footer p {
-  font-size: 14px;
-  margin: 5px;
-}@media (max-width: 600px) {
-  .card,
-  .about,
-  .contact {
-    width: 80%;
-    margin: 20px auto;
-  }
-
-  nav a {
-    display: block;
-    margin: 10px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-}nav {
-  background-color: white;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: darkblue;
-  font-weight: bold;
-}.contact {
-  background-color: white;
-  margin: 30px auto;
-  padding: 20px;
-  max-width: 500px;
-  border-radius: 15px;
-}
-
-.contact h2 {
-  color: darkblue;
-}.about {
-  background-color: white;
-  margin: 30px auto;
-  padding: 20px;
-  max-width: 500px;
-  border-radius: 15px;
-}
-
-.about h2 {
-  color: darkblue;
-}
+  <style>
     body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, lightblue, white);
-  text-align: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
     }
 
-    .photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid white;
-    }
-
-    h1 {
-      color: darkblue;
-    }
-
-    p {
-      font-size: 20px;
-    }
-
-    button {
-      background-color: blue;
+    header {
+      background: #222;
       color: white;
-      padding: 10px 20px;
-      border: none;
+      padding: 25px;
+    }
+
+    nav {
+      background: #333;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      font-weight: bold;
+    }
+
+    .hero {
+      padding: 50px 20px;
+      background: white;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 12px 20px;
       border-radius: 8px;
+      text-decoration: none;
+      margin: 8px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      padding: 15px;
+      margin-top: 30px;
     }
   </style>
 </head>
-<nav><button onclick="toggleDarkMode()">🌙 Dark Mode</button>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-</nav>
-<body><section id="home" class="hero">
 
-  <img src="photo.jpg" alt="Meri Photo" class="photo">
+<body>
 
-  <h1>Namaste! 👋</h1>
+  <header>
+    <h1>My Website</h1>
+    <p>Welcome to my website 👋</p>
+  </header>
 
-  <p>Welcome to meri website.</p>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="calculator.html">Calculator</a>
+  </nav>
 
-  <button onclick="showMessage()">Click Me</button>
+  <section class="hero">
+    <h1>Namaste! 👋</h1>
 
-</section>
+    <p>Ye meri personal website hai.</p>
 
-  <img src="photo.jpg" alt="Meri Photo" class="photo">
+    <a class="btn" href="about.html">About Me</a>
+    <a class="btn" href="calculator.html">Calculator</a>
+    <a class="btn" href="contact.html">Contact</a>
+  </section>
 
-  <h1>Namaste! 👋</h1>
+  <footer>
+    <p>© 2026 My Website</p>
+  </footer>
 
-  <p>Ye meri pehli beautiful website hai.</p>
-<section class="about"><section class="about" id="about">
-  <h2>About Me</h2>
-<section class="contact"><section class="contact" id="contact">
-  <h2>Contact Me</h2>
-<section class="projects">
-  <h2>My Projects</h2>
-
-  <div class="project-card">
-    <h3>🌐 My First Website</h3>
-    <p>Ye meri pehli website hai jo maine HTML aur CSS se banayi hai.</p>
-  </div>
-
-  <div class="project-card">
-    <h3>🧮 Calculator</h3>
-    <p>Ye ek simple calculator project hai.</p>
-  </div>
-
-  <div class="project-card">
-    <h3>💻 Web Learning</h3>
-    <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
-  </div>
-</section>
-  <p>Email: example@gmail.com</p>
-
-  <button onclick="contactMessage()">Contact Me</button>
-</section>
-  <p>
-    Namaste! Mera naam Kumar hai.
-    Main website banana seekh raha hoon.
-  </p>
-</section>
-  <button onclick="showMessage()">Click Me</button>
-
-  <script>function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-    function showMessage() {
-    function contactMessage() {
-  alert("Contact page par swagat hai! 📞");<div id="home">
-    }  alert("Hello! Aapne button click kiya 🎉");</div>
-    }
-  </script>
-<footer>
-  <p>© 2026 Meri Website</p>
-  <p>Made with ❤️ using HTML & CSS</p>
-</footer>
 </body>
-
 </html>
