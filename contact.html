@@ -6,7 +6,23 @@
 
 <body><h1>Contact Me</h1>
 
-<form>
+<form><form onsubmit="sendMessage(event)">
+
+  <label>Name</label>
+  <br>
+  <input type="text" id="name" required>
+
+  <br><br>
+
+  <label>Message</label>
+  <br>
+  <textarea id="message" required></textarea>
+
+  <br><br>
+
+  <button type="submit">Send Message</button>
+
+</form>
   <label>Name</label>
   <br>
   <input type="text" name="name" placeholder="Apna naam">
@@ -37,6 +53,12 @@
     <p>Email: example@gmail.com</p>
 
     <a href="index.html">Home</a>
+<script>
+function sendMessage(event) {
+  event.preventDefault();
 
+  alert("Message successfully received! 🎉");
+}
+</script>
 </body>
 </html>
