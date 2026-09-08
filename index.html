@@ -509,7 +509,12 @@ content="My personal website created using HTML, CSS and JavaScript.">
   </section>  <!-- Movies Section -->  <section class="movies"><h2>
   🎬 Latest Movies
 </h2>
-
+<input
+  type="text"
+  id="movieSearch"
+  placeholder="Search movies..."
+  onkeyup="filterMovies()"
+>
 <div class="movie-container">
 
   <div
