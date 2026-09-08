@@ -112,6 +112,25 @@ body.dark-mode .card {
 
     <a class="back" href="index.html">← Home</a>
   </div>
+<script>
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
 
+  let button = document.querySelector(".dark-btn");
+
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("darkMode", "on");
+    button.innerText = "☀️ Light Mode";
+  } else {
+    localStorage.setItem("darkMode", "off");
+    button.innerText = "🌙 Dark Mode";
+  }
+}
+
+if (localStorage.getItem("darkMode") === "on") {
+  document.body.classList.add("dark-mode");
+  document.querySelector(".dark-btn").innerText = "☀️ Light Mode";
+}
+</script>
 </body>
 </html>
