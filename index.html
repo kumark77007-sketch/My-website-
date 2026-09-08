@@ -275,7 +275,10 @@
 <form onsubmit="searchWebsite(); return false;" class="search-box">
   <input type="text" id="searchInput" placeholder="Search...">
   <button type="submit">Search 🔍</button>
-</form>
+  <button type="button" onclick="clearSearch()">Clear</button>
+</form>function clearSearch() {
+  document.getElementById("searchInput").value = "";
+}
  <section class="hero">
 
   <h1>Namaste! 👋</h1>
