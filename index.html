@@ -516,7 +516,7 @@ body.dark-mode .movie-card p {
 <p>
   ⚡ JavaScript — Website Functionality
 </p>
-<section class="movies">
+<div id="movieDetails" class="movie-details"></div><section class="movies">
 
   <h2>🎬 Latest Movies</h2>
 
@@ -728,5 +728,18 @@ function movieMessage(movieName) {
     "<p>Enjoy the movie details here!</p>";
 
   details.style.display = "block";
+}.movie-details {
+  display: none;
+  max-width: 500px;
+  margin: 25px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
+
+body.dark-mode .movie-details {
+  background: #1e1e1e;
+  color: white;
+     }
   </script></body></html>
