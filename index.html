@@ -3,7 +3,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>🌟 Latest New Movies Website</title><meta name="description"
 content="My personal website created using HTML, CSS and JavaScript.">
 
-  <style>
+  <style>function filterMovies() {
+  let searchText = document.getElementById("movieSearch").value.toLowerCase();
+  let movies = document.querySelectorAll(".movie-card");
+
+  movies.forEach(function(movie) {
+    let movieName = movie.querySelector("h3").innerText.toLowerCase();
+
+    if (movieName.includes(searchText)) {
+      movie.style.display = "block";
+    } else {
+      movie.style.display = "none";
+    }
+  });
+}
 
     * {
       box-sizing: border-box;
