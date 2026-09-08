@@ -91,13 +91,7 @@ textarea:focus {
 <p>📧 Email: your@email.com</p>
     <h2>Message Bhejo 📩</h2>
 <form onsubmit="sendMessage(event)">
-function sendMessage(event) {
-  event.preventDefault();
 
-  let name = document.getElementById("name").value;
-
-  document.getElementById("successMessage").innerText =
-    "Thank you, " + name + "! Message received 🎉";
   <input type="text" id="name" placeholder="Your Name" required>
 
   <input type="email" id="email" placeholder="Your Email" required>
@@ -114,11 +108,12 @@ function sendMessage(event) {
 </form>
 
 <p id="successMessage"></p>
+<p id="successMessage"></p>
     
   </div>
 
-  <script>function clearForm() {
-  function sendMessage(event) {
+  <script>
+function sendMessage(event) {
   event.preventDefault();
 
   let name = document.getElementById("name").value;
@@ -134,14 +129,7 @@ function clearForm() {
 
   document.getElementById("successMessage").innerText = "";
 }
-}
-    function sendMessage(event) {
-      event.preventDefault();
-
-      let name = document.getElementById("name").value;
-
-      alert("Thank you, " + name + "! Message received 🎉");
-    }
+  </script>
   </script>
 
 </body>
