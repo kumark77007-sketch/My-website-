@@ -304,12 +304,22 @@
 <p>Made with ❤️ using HTML, CSS & JavaScript</p>
 <script>
 function searchWebsite() {
-  let text = document.getElementById("searchInput").value;
+  let text = document.getElementById("searchInput").value.toLowerCase();
 
-  if (text === "") {
-    alert("Please enter something to search.");
-  } else {
-    alert("You searched for: " + text);
+  if (text === "calculator") {
+    window.location.href = "calculator.html";
+  }
+  else if (text === "about") {
+    window.location.href = "about.html";
+  }
+  else if (text === "contact") {
+    window.location.href = "contact.html";
+  }
+  else if (text === "home") {
+    window.location.href = "index.html";
+  }
+  else {
+    alert("Page not found!");
   }
 }
 </script></body>
