@@ -304,7 +304,9 @@
 <p>Made with ❤️ using HTML, CSS & JavaScript</p>
 <script>
 function searchWebsite() {
-  let text = document.getElementById("searchInput").value.trim().toLowerCase();
+  let text = document.getElementById("searchInput").value
+  .toLowerCase()
+  .replace(/\s+/g, "");
 
   if (text === "calculator") {
     window.location.href = "calculator.html";
