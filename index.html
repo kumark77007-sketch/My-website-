@@ -276,59 +276,11 @@
   <input type="text" id="searchInput" placeholder="Search...">
   <button type="submit">Search 🔍</button>
   <button type="button" onclick="clearSearch()">Clear</button>
-</form>function clearSearch() {
-  document.getElementById("searchInput").value = "";
-}
- <section class="hero">
-
-  <h1>Namaste! 👋</h1>
-
-  <p>Ye meri personal website hai.</p>
-
-  <p class="hero-text">
-    Welcome to my website! Yahan aap mere projects aur skills dekh sakte hain.
-  </p>
-
-  <a class="btn" href="about.html">Know More →</a>
-
-  <a class="btn" href="contact.html">Contact</a>
-
- </section> class="features">
-  <h2>My Website Features</h2>
-
-  <div class="feature">
-    <h3>🌐 Personal Website</h3>
-    <p>Ye meri personal website hai.</p>
-  </div>
-
-  <div class="feature">
-    <h3>📱 Mobile Friendly</h3>
-    <p>Website mobile par bhi use ki ja sakti hai.</p>
-  </div>
-
-  <div class="feature">
-    <h3>💻 Web Development</h3>
-    <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
-  </div>
-  </section>
-    <h1>Namaste! 👋</h1>
-
-    <p>Ye meri personal website hai.</p>
-
-    <a class="btn" href="about.html">About Me</a>
-    <a class="btn" href="calculator.html">Calculator</a>
-    <a class="btn" href="contact.html">Contact</a>
-  </section>
-
-  <footer>
-    <p>© 2026 My Website</p>
-  </footer>
-<p>Made with ❤️ using HTML, CSS & JavaScript</p>
-<script>
+</form><script>
 function searchWebsite() {
   let text = document.getElementById("searchInput").value
-  .toLowerCase()
-  .replace(/\s+/g, "");
+    .toLowerCase()
+    .replace(/\s+/g, "");
 
   if (text === "calculator") {
     window.location.href = "calculator.html";
@@ -346,22 +298,10 @@ function searchWebsite() {
     alert("Page not found!");
   }
 }
-else if (text === "about") {
-  window.location.href = "about.html";
-}
-else if (text === "contact") {
-  window.location.href = "contact.html";
-}
-else if (text === "home") {
-  window.location.href = "index.html";
-}
-else {
-  alert("Page not found!");
-}
-}
 
 function clearSearch() {
   document.getElementById("searchInput").value = "";
 }
+</script>
 </script></body>
 </html>
