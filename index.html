@@ -542,7 +542,12 @@ body.dark-mode #movieSearch {
 
   </section>  <!-- Movies Section -->  <section class="movies"><h2>
   🎬 Latest Movies
-</h2>
+</h2><div class="movie-filters">
+  <button onclick="showMovies('all')">All</button>
+  <button onclick="showMovies('action')">Action</button>
+  <button onclick="showMovies('comedy')">Comedy</button>
+  <button onclick="showMovies('drama')">Drama</button>
+</div>
 <input
   type="text"
   id="movieSearch"
