@@ -91,7 +91,13 @@ textarea:focus {
 <p>📧 Email: your@email.com</p>
     <h2>Message Bhejo 📩</h2>
 <form onsubmit="sendMessage(event)">
+function sendMessage(event) {
+  event.preventDefault();
 
+  let name = document.getElementById("name").value;
+
+  document.getElementById("successMessage").innerText =
+    "Thank you, " + name + "! Message received 🎉";
   <input type="text" id="name" placeholder="Your Name" required>
 
   <input type="email" id="email" placeholder="Your Email" required>
