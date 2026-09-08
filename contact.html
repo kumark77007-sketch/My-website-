@@ -102,11 +102,15 @@ textarea:focus {
 
       <br>
 
-      <button type="submit">Send Message</button>
+      <button type="submit">Send Message</button><button type="button" onclick="clearForm()">Clear</button>
     </form>
   </div>
 
-  <script>
+  <script>function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("message").value = "";
+}
     function sendMessage(event) {
       event.preventDefault();
 
