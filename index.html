@@ -386,8 +386,11 @@
   let button = document.querySelector(".dark-btn");
 
   if (document.body.classList.contains("dark-mode")) {
-    localStorage.setItem("darkMode", "on");
-    button.innerText = "☀️ Light Mode";
+    if (localStorage.getItem("darkMode") === "on") {
+  document.body.classList.add("dark-mode");
+
+  document.querySelector(".dark-btn").innerText = "☀️ Light Mode";
+    }
   } else {
     localStorage.setItem("darkMode", "off");
     button.innerText = "🌙 Dark Mode";
