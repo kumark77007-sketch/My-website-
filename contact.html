@@ -3,7 +3,15 @@
 <head>
   <title>Contact | My Website</title>
 
-  <style>
+  <style>.back {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 15px;
+}
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -81,7 +89,8 @@
     <h2>Message Bhejo 📩</h2>
 
     <form onsubmit="sendMessage(event)">
-      <input type="text" id="name" placeholder="Your Name" required>
+     <br><br>
+<a class="back" href="index.html">← Back to Home</a> <input type="text" id="name" placeholder="Your Name" required>
 
       <input type="email" id="email" placeholder="Your Email" required>
 
