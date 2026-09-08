@@ -276,15 +276,16 @@
   <input type="text" id="searchInput" placeholder="Search...">
   <button type="submit">Search 🔍</button>
   <button type="button" onclick="clearSearch()">Clear</button>
-</form><script>
+</form><script><script>
 function searchWebsite() {
-  let text = document.getElementById("searchInput").value 
-    if (text === "") {
-  alert("Please enter something to search!");
-  return;
-  }
+  let text = document.getElementById("searchInput").value
     .toLowerCase()
     .replace(/\s+/g, "");
+
+  if (text === "") {
+    alert("Please enter something to search!");
+    return;
+  }
 
   if ("calculator".includes(text)) {
     window.location.href = "calculator.html";
@@ -307,5 +308,6 @@ function clearSearch() {
   document.getElementById("searchInput").value = "";
 }
 </script>
+
 </script></body>
 </html>
