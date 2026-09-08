@@ -1,4 +1,9 @@
-<!DOCTYPE html><html><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>🌟 Latest New Movies Website</title>  <meta name="description" content="My personal website created using HTML, CSS and JavaScript.">  <style>
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>🌟 Latest New Movies Website</title><meta name="description"
+content="My personal website created using HTML, CSS and JavaScript.">
+
+  <style>
 
     * {
       box-sizing: border-box;
@@ -48,6 +53,8 @@
       color: white;
     }
 
+    /* Search */
+
     .search-box {
       display: flex;
       justify-content: center;
@@ -79,6 +86,8 @@
       background: #0056b3;
     }
 
+    /* Dark Mode Button */
+
     .dark-btn {
       padding: 12px 18px;
       margin: 15px auto 25px;
@@ -94,8 +103,12 @@
       background: #444;
     }
 
+    /* Hero */
+
     .hero {
       padding: 50px 20px 25px;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero h1 {
@@ -111,8 +124,22 @@
       font-size: 17px;
     }
 
+    .hero::before {
+      content: "🎬";
+      position: absolute;
+      font-size: 80px;
+      opacity: 0.08;
+      top: 20px;
+      left: 10%;
+      animation: movieFloat 3s ease-in-out infinite;
+    }
+
+    /* Buttons */
+
     .btn {
       display: inline-block;
+      position: relative;
+      overflow: hidden;
       background: #007bff;
       color: white;
       padding: 12px 20px;
@@ -126,26 +153,25 @@
       background: #0056b3;
       transform: scale(1.05);
     }
-.btn {
-  position: relative;
-  overflow: hidden;
-}
 
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: skewX(-20deg);
-  transition: 0.5s;
-}
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: skewX(-20deg);
+      transition: 0.5s;
+    }
 
-.btn:hover::after {
-  left: 100%;
-}
+    .btn:hover::after {
+      left: 100%;
+    }
+
+    /* Features */
+
     .features,
     .skills,
     .projects {
@@ -171,9 +197,70 @@
       border-radius: 8px;
     }
 
+    /* Movies */
+
+    .movies {
+      padding: 30px 15px;
+    }
+
+    .movie-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .movie-card {
+      width: 280px;
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .movie-poster {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      background: #eeeeee;
+      border-radius: 12px;
+    }
+
+    .movie-card h3 {
+      margin-bottom: 5px;
+    }
+
+    .movie-card p {
+      color: #666;
+    }
+
+    /* Movie Details */
+
+    .movie-details {
+      display: none;
+      max-width: 500px;
+      margin: 25px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Social */
+
     .social-links {
       margin-top: 15px;
     }
+
+    /* Footer */
 
     footer {
       background: #222;
@@ -192,7 +279,9 @@
     body.dark-mode .feature,
     body.dark-mode .project,
     body.dark-mode .welcome-card,
-    body.dark-mode .skills {
+    body.dark-mode .skills,
+    body.dark-mode .movie-card,
+    body.dark-mode .movie-details {
       background: #1e1e1e;
       color: white;
     }
@@ -202,77 +291,23 @@
       color: white;
     }
 
+    body.dark-mode .movie-poster {
+      background: #2a2a2a;
+    }
+
+    body.dark-mode .movie-card p {
+      color: #ccc;
+    }
+
     body.dark-mode .search-box input {
       background: #1e1e1e;
       color: white;
       border-color: #555;
     }
-.hero {
-  position: relative;
-  overflow: hidden;
-}
 
-.hero::before {
-  content: "🎬";
-  position: absolute;
-  font-size: 80px;
-  opacity: 0.08;
-  top: 20px;
-  left: 10%;
-  animation: movieFloat 3s ease-in-out infinite;
-}
+    /* Animations */
 
-@keyframes movieFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-15px);
-  }
-}.movies {
-  padding: 30px 15px;
-}
-
-.movie-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.movie-card {
-  width: 280px;
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-  transition: 0.3s;
-}
-
-.movie-card:hover {
-  transform: translateY(-8px);
-}
-
-.movie-poster {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 70px;
-  background: #eeeeee;
-  border-radius: 12px;
-}
-
-.movie-card h3 {
-  margin-bottom: 5px;
-}
-
-.movie-card p {
-  color: #666;
-}
     @keyframes welcome {
-
       from {
         opacity: 0;
         transform: translateY(-20px);
@@ -282,34 +317,21 @@
         opacity: 1;
         transform: translateY(0);
       }
-
     }
 
-    /* Mobile Menu */
-body.dark-mode .movie-card {
-  background: #1e1e1e;
-  color: white;
-}
+    @keyframes movieFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-body.dark-mode .movie-poster {
-  background: #2a2a2a;
-}
+      50% {
+        transform: translateY(-15px);
+      }
+    }
 
-body.dark-mode .movie-card p {
-  color: #ccc;
-}
+    /* Mobile */
 
-@media (max-width: 600px) {
-  .movie-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .movie-card {
-    width: 90%;
-    max-width: 320px;
-  }
-}
     @media (max-width: 600px) {
 
       .menu-btn {
@@ -326,12 +348,12 @@ body.dark-mode .movie-card p {
         margin: 12px;
       }
 
-      .hero h1 {
-        font-size: 26px;
-      }
-
       .hero {
         padding: 35px 15px;
+      }
+
+      .hero h1 {
+        font-size: 26px;
       }
 
       .btn {
@@ -357,6 +379,15 @@ body.dark-mode .movie-card p {
         margin-right: 10px;
       }
 
+      .movie-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .movie-card {
+        width: 90%;
+        max-width: 320px;
+      }
     }
 
   </style></head><body>  <header><div class="logo">
@@ -372,11 +403,8 @@ body.dark-mode .movie-card p {
 </button>
 
 <a href="index.html">Home</a>
-
 <a href="about.html">About</a>
-
 <a href="contact.html">Contact</a>
-
 <a href="calculator.html">Calculator</a>
 
   </nav>  <form onsubmit="searchWebsite(event)" class="search-box"><input
@@ -415,29 +443,21 @@ body.dark-mode .movie-card p {
   Welcome to my website! Yahan aap mere projects aur skills dekh sakte hain.
 </p>
 
-<a
-  class="btn"
-  href="about.html"
->
+<a class="btn" href="about.html">
   Know More →
 </a>
+
 <a class="btn" href="calculator.html">
   🎬 Watch Now
 </a>
-<a
-  class="btn"
-  href="contact.html"
->
+
+<a class="btn" href="contact.html">
   Contact
 </a>
 
-<a
-  class="btn"
-  href="about.html"
->
+<a class="btn" href="about.html">
   Get Started 🚀
 </a>
-
 
 <div class="social-links">
 
@@ -464,92 +484,116 @@ body.dark-mode .movie-card p {
 </h2>
 
 <div class="feature">
-
-  <h3>
-    🌐 Personal Website
-  </h3>
-
-  <p>
-    Ye meri personal website hai.
-  </p>
-
+  <h3>🌐 Personal Website</h3>
+  <p>Ye meri personal website hai.</p>
 </div>
 
-
 <div class="feature">
-
-  <h3>
-    📱 Mobile Friendly
-  </h3>
-
-  <p>
-    Website mobile par bhi use ki ja sakti hai.
-  </p>
-
+  <h3>📱 Mobile Friendly</h3>
+  <p>Website mobile par bhi use ki ja sakti hai.</p>
 </div>
 
-
 <div class="feature">
-
-  <h3>
-    💻 Web Development
-  </h3>
-
-  <p>
-    Main HTML, CSS aur JavaScript seekh raha hoon.
-  </p>
-
+  <h3>💻 Web Development</h3>
+  <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
 </div>
 
   </section>  <section class="skills"><h2>
   My Skills 💻
 </h2>
 
-<p>
-  🌐 HTML — Website Structure
-</p>
+<p>🌐 HTML — Website Structure</p>
+<p>🎨 CSS — Website Design</p>
+<p>⚡ JavaScript — Website Functionality</p>
 
-<p>
-  🎨 CSS — Website Design
-</p>
+  </section>  <!-- Movies Section -->  <section class="movies"><h2>
+  🎬 Latest Movies
+</h2>
 
-<p>
-  ⚡ JavaScript — Website Functionality
-</p>
-<div id="movieDetails" class="movie-details"></div><section class="movies">
+<div class="movie-container">
 
-  <h2>🎬 Latest Movies</h2>
+  <div
+    class="movie-card"
+    onclick="movieMessage('Movie One')"
+  >
 
-  <div class="movie-container">
-
-    <div class="movie-card" onclick="movieMessage('Movie One')">
-      <div class="movie-poster">🎬</div>
-      <h3>Movie One</h3>
-      <p>Action • Adventure</p>
-      <a class="btn" href="#">Watch Now</a>
+    <div class="movie-poster">
+      🎬
     </div>
 
-    <div class="movie-card" onclick="movieMessage('Movie Two')">
-      <div class="movie-poster">🍿</div>
-      <h3>Movie Two</h3>
-      <p>Comedy • Family</p>
-      <a class="btn" href="#">Watch Now</a>
-    </div>
+    <h3>
+      Movie One
+    </h3>
 
-    <div class="movie-card" onclick="movieMessage('Movie Three')">
-      <div class="movie-poster">⭐</div>
-      <h3>Movie Three</h3>
-      <p>Drama • Mystery</p>
-      <a class="btn" href="#">Watch Now</a>
-    </div>
+    <p>
+      Action • Adventure
+    </p>
+
+    <a class="btn" href="#">
+      Watch Now
+    </a>
 
   </div>
 
-</section>
+
+  <div
+    class="movie-card"
+    onclick="movieMessage('Movie Two')"
+  >
+
+    <div class="movie-poster">
+      🍿
+    </div>
+
+    <h3>
+      Movie Two
+    </h3>
+
+    <p>
+      Comedy • Family
+    </p>
+
+    <a class="btn" href="#">
+      Watch Now
+    </a>
+
+  </div>
+
+
+  <div
+    class="movie-card"
+    onclick="movieMessage('Movie Three')"
+  >
+
+    <div class="movie-poster">
+      ⭐
+    </div>
+
+    <h3>
+      Movie Three
+    </h3>
+
+    <p>
+      Drama • Mystery
+    </p>
+
+    <a class="btn" href="#">
+      Watch Now
+    </a>
+
+  </div>
+
+</div>
+
+
+<div
+  id="movieDetails"
+  class="movie-details"
+></div>
+
   </section>  <section class="projects"><h2>
   My Projects 🚀
 </h2>
-
 
 <div class="project">
 
@@ -620,34 +664,25 @@ body.dark-mode .movie-card p {
         alert("Please enter something to search!");
 
         return;
-
       }
 
       if ("calculator".includes(text)) {
 
         window.location.href = "calculator.html";
 
-      }
-
-      else if ("about".includes(text)) {
+      } else if ("about".includes(text)) {
 
         window.location.href = "about.html";
 
-      }
-
-      else if ("contact".includes(text)) {
+      } else if ("contact".includes(text)) {
 
         window.location.href = "contact.html";
 
-      }
-
-      else if ("home".includes(text)) {
+      } else if ("home".includes(text)) {
 
         window.location.href = "index.html";
 
-      }
-
-      else {
+      } else {
 
         alert("Page not found!");
 
@@ -684,9 +719,7 @@ body.dark-mode .movie-card p {
 
         button.innerText = "☀️ Light Mode";
 
-      }
-
-      else {
+      } else {
 
         localStorage.setItem("darkMode", "off");
 
@@ -718,28 +751,21 @@ body.dark-mode .movie-card p {
         .toggle("menu-open");
 
     }
-function movieMessage(movieName) {
-  let details = document.getElementById("movieDetails");
 
-  details.innerHTML =
-    "<h2>🎬 " + movieName + "</h2>" +
-    "<p>⭐ Rating: 8/10</p>" +
-    "<p>🎭 Genre: Action • Adventure</p>" +
-    "<p>Enjoy the movie details here!</p>";
 
-  details.style.display = "block";
-}.movie-details {
-  display: none;
-  max-width: 500px;
-  margin: 25px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-}
+    function movieMessage(movieName) {
 
-body.dark-mode .movie-details {
-  background: #1e1e1e;
-  color: white;
-     }
+      let details =
+        document.getElementById("movieDetails");
+
+      details.innerHTML =
+        "<h2>🎬 " + movieName + "</h2>" +
+        "<p>⭐ Rating: 8/10</p>" +
+        "<p>🎭 Genre: Action • Adventure</p>" +
+        "<p>Enjoy the movie details here!</p>";
+
+      details.style.display = "block";
+
+    }
+
   </script></body></html>
