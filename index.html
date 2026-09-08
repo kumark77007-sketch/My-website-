@@ -282,16 +282,16 @@ function searchWebsite() {
     .toLowerCase()
     .replace(/\s+/g, "");
 
-  if (text === "calculator") {
+  if ("calculator".includes(text)) {
     window.location.href = "calculator.html";
   }
-  else if (text === "about") {
+  else if ("about".includes(text)) {
     window.location.href = "about.html";
   }
-  else if (text === "contact") {
+  else if ("contact".includes(text)) {
     window.location.href = "contact.html";
   }
-  else if (text === "home") {
+  else if ("home".includes(text)) {
     window.location.href = "index.html";
   }
   else {
