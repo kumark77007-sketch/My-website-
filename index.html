@@ -229,7 +229,32 @@
         margin-left: 10px;
         margin-right: 10px;
       }
-    }
+    }.menu-btn {
+  display: none;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #007bff;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .menu-btn {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  nav a {
+    display: none;
+  }
+
+  nav.menu-open a {
+    display: block;
+    margin: 12px;
+  }
+}
   </style></head><body>  <header>
     <div class="logo">🌟 Latest New Movies Website</div>
     <p>Welcome to my website 👋</p>
