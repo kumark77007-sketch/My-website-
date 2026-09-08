@@ -343,5 +343,16 @@ function searchWebsite() {
     alert("Page not found!");
   }
 }
-</script></body>
+@media (max-width: 600px) {
+  .search-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-box input,
+  .search-box button {
+    width: 90%;
+    box-sizing: border-box;
+  }
+  }</script></body>
 </html>
