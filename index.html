@@ -346,16 +346,22 @@ function searchWebsite() {
     alert("Page not found!");
   }
 }
-@media (max-width: 600px) {
-  .search-box {
-    flex-direction: column;
-    align-items: center;
-  }
+else if (text === "about") {
+  window.location.href = "about.html";
+}
+else if (text === "contact") {
+  window.location.href = "contact.html";
+}
+else if (text === "home") {
+  window.location.href = "index.html";
+}
+else {
+  alert("Page not found!");
+}
+}
 
-  .search-box input,
-  .search-box button {
-    width: 90%;
-    box-sizing: border-box;
-  }
-  }</script></body>
+function clearSearch() {
+  document.getElementById("searchInput").value = "";
+}
+</script></body>
 </html>
