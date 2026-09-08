@@ -719,6 +719,14 @@ body.dark-mode .movie-card p {
 
     }
 function movieMessage(movieName) {
-  alert("🎬 You selected: " + movieName);
+  let details = document.getElementById("movieDetails");
+
+  details.innerHTML =
+    "<h2>🎬 " + movieName + "</h2>" +
+    "<p>⭐ Rating: 8/10</p>" +
+    "<p>🎭 Genre: Action • Adventure</p>" +
+    "<p>Enjoy the movie details here!</p>";
+
+  details.style.display = "block";
 }
   </script></body></html>
