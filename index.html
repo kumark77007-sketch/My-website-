@@ -253,7 +253,10 @@
     <a href="contact.html">Contact</a>
     
   </nav>
-
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search...">
+  <button onclick="searchWebsite()">Search 🔍</button>
+</div>
  <section class="hero">
 
   <h1>Namaste! 👋</h1>
@@ -299,5 +302,15 @@
     <p>© 2026 My Website</p>
   </footer>
 <p>Made with ❤️ using HTML, CSS & JavaScript</p>
-</body>
+<script>
+function searchWebsite() {
+  let text = document.getElementById("searchInput").value;
+
+  if (text === "") {
+    alert("Please enter something to search.");
+  } else {
+    alert("You searched for: " + text);
+  }
+}
+</script></body>
 </html>
