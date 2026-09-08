@@ -90,8 +90,29 @@ textarea:focus {
 
 <p>📧 Email: your@email.com</p>
     <h2>Message Bhejo 📩</h2>
+<form onsubmit="sendMessage(event)">
 
-    function sendMessage(event) {
+  <input type="text" id="name" placeholder="Your Name" required>
+
+  <input type="email" id="email" placeholder="Your Email" required>
+
+  <textarea id="message" rows="5"
+    placeholder="Your Message" required></textarea>
+
+  <br>
+
+  <button type="submit">Send Message</button>
+
+  <button type="button" onclick="clearForm()">Clear</button>
+
+</form>
+
+<p id="successMessage"></p>
+    
+  </div>
+
+  <script>function clearForm() {
+  function sendMessage(event) {
   event.preventDefault();
 
   let name = document.getElementById("name").value;
@@ -99,24 +120,14 @@ textarea:focus {
   document.getElementById("successMessage").innerText =
     "Thank you, " + name + "! Message received 🎉";
 }
-     <br><br><p id="successMessage"></p>
-<a class="back" href="index.html">← Back to Home</a> <input type="text" id="name" placeholder="Your Name" required>
 
-      <input type="email" id="email" placeholder="Your Email" required>
-
-      <textarea id="message" rows="5"
-        placeholder="Your Message" required></textarea>
-
-      <br>
-
-      <button type="submit">Send Message</button><button type="button" onclick="clearForm()">Clear</button>
-    </form>
-  </div>
-
-  <script>function clearForm() {
+function clearForm() {
   document.getElementById("name").value = "";
   document.getElementById("email").value = "";
   document.getElementById("message").value = "";
+
+  document.getElementById("successMessage").innerText = "";
+}
 }
     function sendMessage(event) {
       event.preventDefault();
