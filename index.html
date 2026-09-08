@@ -278,7 +278,10 @@
   <button type="button" onclick="clearSearch()">Clear</button>
 </form><script>
 function searchWebsite() {
-  let text = document.getElementById("searchInput").value
+  let text = document.getElementById("searchInput").value if (text === "") {
+  alert("Please enter something to search!");
+  return;
+  }
     .toLowerCase()
     .replace(/\s+/g, "");
 
