@@ -522,21 +522,21 @@ body.dark-mode .movie-card p {
 
   <div class="movie-container">
 
-    <div class="movie-card">
+    <div class="movie-card" onclick="movieMessage('Movie One')">
       <div class="movie-poster">🎬</div>
       <h3>Movie One</h3>
       <p>Action • Adventure</p>
       <a class="btn" href="#">Watch Now</a>
     </div>
 
-    <div class="movie-card">
+    <div class="movie-card" onclick="movieMessage('Movie Two')">
       <div class="movie-poster">🍿</div>
       <h3>Movie Two</h3>
       <p>Comedy • Family</p>
       <a class="btn" href="#">Watch Now</a>
     </div>
 
-    <div class="movie-card">
+    <div class="movie-card" onclick="movieMessage('Movie Three')">
       <div class="movie-poster">⭐</div>
       <h3>Movie Three</h3>
       <p>Drama • Mystery</p>
@@ -718,5 +718,7 @@ body.dark-mode .movie-card p {
         .toggle("menu-open");
 
     }
-
+function movieMessage(movieName) {
+  alert("🎬 You selected: " + movieName);
+}
   </script></body></html>
