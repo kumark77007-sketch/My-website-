@@ -423,6 +423,34 @@ body.dark-mode #movieSearch {
   background: #1e1e1e;
   color: white;
   border-color: #555;
+}.movie-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.movie-filters button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.movie-filters button:hover {
+  background: #0056b3;
+}
+
+body.dark-mode .movie-filters button {
+  background: #444;
+}
+
+body.dark-mode .movie-filters button:hover {
+  background: #666;
 }
   </style></head><body>  <header><div class="logo">
   🌟 Latest New Movies Website
