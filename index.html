@@ -811,5 +811,17 @@ body.dark-mode #movieSearch {
       details.style.display = "block";
 
     }
+function showMovies(category) {
+  let movies = document.querySelectorAll(".movie-card");
 
+  movies.forEach(function(movie) {
+    let genre = movie.querySelector("p").innerText.toLowerCase();
+
+    if (category === "all" || genre.includes(category)) {
+      movie.style.display = "block";
+    } else {
+      movie.style.display = "none";
+    }
+  });
+}
   </script></body></html>
