@@ -1,23 +1,15 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>🌟 Latest New Movies Website</title><meta name="description"
-content="My personal website created using HTML, CSS and JavaScript.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>function filterMovies() {
-  let searchText = document.getElementById("movieSearch").value.toLowerCase();
-  let movies = document.querySelectorAll(".movie-card");
+  <title>🌟 Latest New Movies Website</title>
 
-  movies.forEach(function(movie) {
-    let movieName = movie.querySelector("h3").innerText.toLowerCase();
+  <meta name="description"
+    content="My personal website created using HTML, CSS and JavaScript.">
 
-    if (movieName.includes(searchText)) {
-      movie.style.display = "block";
-    } else {
-      movie.style.display = "none";
-    }
-  });
-}
-
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -99,7 +91,7 @@ content="My personal website created using HTML, CSS and JavaScript.">
       background: #0056b3;
     }
 
-    /* Dark Mode Button */
+    /* Dark Mode */
 
     .dark-btn {
       padding: 12px 18px;
@@ -216,6 +208,28 @@ content="My personal website created using HTML, CSS and JavaScript.">
       padding: 30px 15px;
     }
 
+    .movie-filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px auto;
+    }
+
+    .movie-filters button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .movie-filters button:hover {
+      background: #0056b3;
+    }
+
     .movie-container {
       display: flex;
       justify-content: center;
@@ -229,22 +243,37 @@ content="My personal website created using HTML, CSS and JavaScript.">
       padding: 15px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-      transition: 0.3s;
       cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .movie-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
     }
 
     .movie-poster {
       height: 180px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       font-size: 70px;
-      background: #eeeeee;
+      background: linear-gradient(135deg, #222, #555);
       border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .movie-card:hover .movie-poster {
+      transform: scale(1.04);
+    }
+
+    .movie-poster span {
+      margin: 0;
+      font-size: 22px;
     }
 
     .movie-card h3 {
@@ -253,6 +282,51 @@ content="My personal website created using HTML, CSS and JavaScript.">
 
     .movie-card p {
       color: #666;
+    }
+
+    .movie-rating {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .genre-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #007bff;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 5px 0 10px;
+    }
+
+    /* Movie Search */
+
+    #movieSearch {
+      display: block;
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #movieSearch:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    }
+
+    /* No Movie */
+
+    .no-movie-message {
+      display: none;
+      margin: 20px auto;
+      font-size: 18px;
+      font-weight: bold;
     }
 
     /* Movie Details */
@@ -265,6 +339,21 @@ content="My personal website created using HTML, CSS and JavaScript.">
       background: white;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      animation: detailsShow 0.4s ease;
+    }
+
+    .movie-details button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .movie-details button:hover {
+      background: #0056b3;
     }
 
     /* Social */
@@ -312,10 +401,19 @@ content="My personal website created using HTML, CSS and JavaScript.">
       color: #ccc;
     }
 
-    body.dark-mode .search-box input {
+    body.dark-mode .search-box input,
+    body.dark-mode #movieSearch {
       background: #1e1e1e;
       color: white;
       border-color: #555;
+    }
+
+    body.dark-mode .movie-filters button {
+      background: #444;
+    }
+
+    body.dark-mode .movie-filters button:hover {
+      background: #666;
     }
 
     /* Animations */
@@ -343,10 +441,21 @@ content="My personal website created using HTML, CSS and JavaScript.">
       }
     }
 
+    @keyframes detailsShow {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* Mobile */
 
     @media (max-width: 600px) {
-
       .menu-btn {
         display: inline-block;
         margin-bottom: 10px;
@@ -402,329 +511,354 @@ content="My personal website created using HTML, CSS and JavaScript.">
         max-width: 320px;
       }
     }
-#movieSearch {
-  display: block;
-  width: 90%;
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
-  outline: none;
-}
+  </style>
+</head>
 
-#movieSearch:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0,123,255,.2);
-}
+<body>
 
-body.dark-mode #movieSearch {
-  background: #1e1e1e;
-  color: white;
-  border-color: #555;
-}.movie-filters {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 20px auto;
-}
-
-.movie-filters button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.movie-filters button:hover {
-  background: #0056b3;
-}
-
-body.dark-mode .movie-filters button {
-  background: #444;
-}
-
-body.dark-mode .movie-filters button:hover {
-  background: #666;
-}
-  </style></head><body>  <header><div class="logo">
-  🌟 Latest New Movies Website
-</div>
-
-<p>
-  Welcome to my website 👋
-</p>
-
-  </header>  <nav><button class="menu-btn" onclick="toggleMenu()">
-  ☰ Menu
-</button>
-
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="calculator.html">Calculator</a>
-
-  </nav>  <form onsubmit="searchWebsite(event)" class="search-box"><input
-  type="text"
-  id="searchInput"
-  placeholder="Search..."
->
-
-<button type="submit">
-  Search 🔍
-</button>
-
-<button
-  type="button"
-  onclick="clearSearch()"
->
-  Clear
-</button>
-
-  </form>  <section class="hero"><h1>
-  Namaste! 👋
-</h1>
-
-<button
-  class="dark-btn"
-  onclick="toggleDarkMode()"
->
-  🌙 Dark Mode
-</button>
-
-<p>
-  Ye meri personal website hai.
-</p>
-
-<p class="hero-text">
-  Welcome to my website! Yahan aap mere projects aur skills dekh sakte hain.
-</p>
-
-<a class="btn" href="about.html">
-  Know More →
-</a>
-
-<a class="btn" href="calculator.html">
-  🎬 Watch Now
-</a>
-
-<a class="btn" href="contact.html">
-  Contact
-</a>
-
-<a class="btn" href="about.html">
-  Get Started 🚀
-</a>
-
-<div class="social-links">
-
-  <a
-    class="btn"
-    href="https://github.com/"
-    target="_blank"
-  >
-    GitHub
-  </a>
-
-  <a
-    class="btn"
-    href="https://www.linkedin.com/"
-    target="_blank"
-  >
-    LinkedIn
-  </a>
-
-</div>
-
-  </section>  <section class="features"><h2>
-  My Website Features
-</h2>
-
-<div class="feature">
-  <h3>🌐 Personal Website</h3>
-  <p>Ye meri personal website hai.</p>
-</div>
-
-<div class="feature">
-  <h3>📱 Mobile Friendly</h3>
-  <p>Website mobile par bhi use ki ja sakti hai.</p>
-</div>
-
-<div class="feature">
-  <h3>💻 Web Development</h3>
-  <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
-</div>
-
-  </section>  <section class="skills"><h2>
-  My Skills 💻
-</h2>
-
-<p>🌐 HTML — Website Structure</p>
-<p>🎨 CSS — Website Design</p>
-<p>⚡ JavaScript — Website Functionality</p>
-
-  </section>  <!-- Movies Section -->  <section class="movies"><h2>
-  🎬 Latest Movies
-</h2><div class="movie-filters">
-  <button onclick="showMovies('all')">All</button>
-  <button onclick="showMovies('action')">Action</button>
-  <button onclick="showMovies('comedy')">Comedy</button>
-  <button onclick="showMovies('drama')">Drama</button>
-</div>
-<input
-  type="text"
-  id="movieSearch"
-  placeholder="Search movies..."
-  onkeyup="filterMovies()"
->
-<div class="movie-container">
-
-  <div
-    class="movie-card"
-    onclick="movieMessage('Movie One')"
-  >
-
-    <div class="movie-poster">
-      🎬
+  <header>
+    <div class="logo">
+      🌟 Latest New Movies Website
     </div>
 
-    <h3>
-      Movie One
-    </h3>
+    <p>
+      Welcome to my website 👋
+    </p>
+  </header>
+
+  <nav>
+    <button class="menu-btn" onclick="toggleMenu()">
+      ☰ Menu
+    </button>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="calculator.html">Calculator</a>
+  </nav>
+
+  <form onsubmit="searchWebsite(event)" class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search..."
+    >
+
+    <button type="submit">
+      Search 🔍
+    </button>
+
+    <button type="button" onclick="clearSearch()">
+      Clear
+    </button>
+  </form>
+
+  <section class="hero">
+
+    <h1>
+      Namaste! 👋
+    </h1>
+
+    <button class="dark-btn" onclick="toggleDarkMode()">
+      🌙 Dark Mode
+    </button>
 
     <p>
-      Action • Adventure
+      Ye meri personal website hai.
     </p>
 
-    <a class="btn" href="#">
-      Watch Now
+    <p class="hero-text">
+      Welcome to my website! Yahan aap mere projects aur skills dekh sakte hain.
+    </p>
+
+    <a class="btn" href="about.html">
+      Know More →
     </a>
 
-  </div>
+    <a class="btn" href="calculator.html">
+      🎬 Watch Now
+    </a>
 
+    <a class="btn" href="contact.html">
+      Contact
+    </a>
 
-  <div
-    class="movie-card"
-    onclick="movieMessage('Movie Two')"
-  >
+    <a class="btn" href="about.html">
+      Get Started 🚀
+    </a>
 
-    <div class="movie-poster">
-      🍿
+    <div class="social-links">
+
+      <a
+        class="btn"
+        href="https://github.com/"
+        target="_blank"
+      >
+        GitHub
+      </a>
+
+      <a
+        class="btn"
+        href="https://www.linkedin.com/"
+        target="_blank"
+      >
+        LinkedIn
+      </a>
+
     </div>
 
-    <h3>
-      Movie Two
-    </h3>
+  </section>
 
-    <p>
-      Comedy • Family
+  <section class="features">
+
+    <h2>
+      My Website Features
+    </h2>
+
+    <div class="feature">
+      <h3>🌐 Personal Website</h3>
+      <p>Ye meri personal website hai.</p>
+    </div>
+
+    <div class="feature">
+      <h3>📱 Mobile Friendly</h3>
+      <p>Website mobile par bhi use ki ja sakti hai.</p>
+    </div>
+
+    <div class="feature">
+      <h3>💻 Web Development</h3>
+      <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
+    </div>
+
+  </section>
+
+  <section class="skills">
+
+    <h2>
+      My Skills 💻
+    </h2>
+
+    <p>🌐 HTML — Website Structure</p>
+    <p>🎨 CSS — Website Design</p>
+    <p>⚡ JavaScript — Website Functionality</p>
+
+  </section>
+
+  <!-- Movies Section -->
+
+  <section class="movies">
+
+    <h2>
+      🎬 Latest Movies
+    </h2>
+
+    <div class="movie-filters">
+      <button onclick="showMovies('all')">All</button>
+      <button onclick="showMovies('action')">Action</button>
+      <button onclick="showMovies('comedy')">Comedy</button>
+      <button onclick="showMovies('drama')">Drama</button>
+    </div>
+
+    <input
+      type="text"
+      id="movieSearch"
+      placeholder="Search movies..."
+      onkeyup="filterMovies()"
+    >
+
+    <div class="movie-container">
+
+      <!-- Movie One -->
+
+      <div
+        class="movie-card"
+        onclick="movieMessage('Movie One')"
+      >
+
+        <div class="movie-poster">
+          🎬
+          <span>Movie One</span>
+        </div>
+
+        <h3>
+          Movie One
+        </h3>
+
+        <p>
+          Action • Adventure
+        </p>
+
+        <div class="movie-rating">
+          ⭐ 8.0 / 10
+        </div>
+
+        <div class="genre-badge">
+          Action • Adventure
+        </div>
+
+        <a class="btn" href="#">
+          Watch Now
+        </a>
+
+      </div>
+
+      <!-- Movie Two -->
+
+      <div
+        class="movie-card"
+        onclick="movieMessage('Movie Two')"
+      >
+
+        <div class="movie-poster">
+          🍿
+          <span>Movie Two</span>
+        </div>
+
+        <h3>
+          Movie Two
+        </h3>
+
+        <p>
+          Comedy • Family
+        </p>
+
+        <div class="movie-rating">
+          ⭐ 8.0 / 10
+        </div>
+
+        <div class="genre-badge">
+          Comedy • Family
+        </div>
+
+        <a class="btn" href="#">
+          Watch Now
+        </a>
+
+      </div>
+
+      <!-- Movie Three -->
+
+      <div
+        class="movie-card"
+        onclick="movieMessage('Movie Three')"
+      >
+
+        <div class="movie-poster">
+          ⭐
+          <span>Movie Three</span>
+        </div>
+
+        <h3>
+          Movie Three
+        </h3>
+
+        <p>
+          Drama • Mystery
+        </p>
+
+        <div class="movie-rating">
+          ⭐ 8.0 / 10
+        </div>
+
+        <div class="genre-badge">
+          Drama • Mystery
+        </div>
+
+        <a class="btn" href="#">
+          Watch Now
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- No Movie Message -->
+
+    <p id="noMovieMessage" class="no-movie-message">
+      😕 No movie found!
     </p>
 
-    <a class="btn" href="#">
-      Watch Now
-    </a>
+    <!-- Movie Details -->
+
+    <div
+      id="movieDetails"
+      class="movie-details"
+    ></div>
+
+  </section>
+
+  <section class="projects">
+
+    <h2>
+      My Projects 🚀
+    </h2>
+
+    <div class="project">
+
+      <h3>
+        🌐 My First Website
+      </h3>
+
+      <p>
+        HTML aur CSS se banayi hui meri website.
+      </p>
+
+    </div>
+
+    <div class="project">
+
+      <h3>
+        🧮 Calculator
+      </h3>
+
+      <p>
+        JavaScript se banaya hua calculator.
+      </p>
+
+      <a
+        class="btn"
+        href="calculator.html"
+      >
+        Open Calculator
+      </a>
+
+    </div>
+
+  </section>
+
+  <div class="welcome-card">
+
+    <h2>
+      Welcome! 👋
+    </h2>
+
+    <p>
+      Ye meri first professional website hai.
+    </p>
+
+    <p>
+      Main HTML, CSS aur JavaScript seekh raha hoon.
+    </p>
 
   </div>
 
-
-  <div
-    class="movie-card"
-    onclick="movieMessage('Movie Three')"
-  >
-
-    <div class="movie-poster">
-      ⭐
-    </div><p id="noMovieMessage" class="no-movie-message">
-  😕 No movie found!
-    </p>
-
-    <h3>
-      Movie Three
-    </h3>
+  <footer>
 
     <p>
-      Drama • Mystery
+      © 2026 My Website
     </p>
 
-    <a class="btn" href="#">
-      Watch Now
-    </a>
+    <p>
+      Made with ❤️ using HTML, CSS &amp; JavaScript
+    </p>
 
-  </div>
+  </footer>
 
-</div>
+  <script>
 
-
-<div
-  id="movieDetails"
-  class="movie-details"
-></div>
-
-  </section>  <section class="projects"><h2>
-  My Projects 🚀
-</h2>
-
-<div class="project">
-
-  <h3>
-    🌐 My First Website
-  </h3>
-
-  <p>
-    HTML aur CSS se banayi hui meri website.
-  </p>
-
-</div>
-
-
-<div class="project">
-
-  <h3>
-    🧮 Calculator
-  </h3>
-
-  <p>
-    JavaScript se banaya hua calculator.
-  </p>
-
-  <a
-    class="btn"
-    href="calculator.html"
-  >
-    Open Calculator
-  </a>
-
-</div>
-
-  </section>  <div class="welcome-card"><h2>
-  Welcome! 👋
-</h2>
-
-<p>
-  Ye meri first professional website hai.
-</p>
-
-<p>
-  Main HTML, CSS aur JavaScript seekh raha hoon.
-</p>
-
-  </div>  <footer><p>
-  © 2026 My Website
-</p>
-
-<p>
-  Made with ❤️ using HTML, CSS &amp; JavaScript
-</p>
-
-  </footer>  <script>
+    /* Website Search */
 
     function searchWebsite(event) {
-
       event.preventDefault();
 
       let text = document
@@ -734,98 +868,63 @@ body.dark-mode .movie-filters button:hover {
         .replace(/\s+/g, "");
 
       if (text === "") {
-
         alert("Please enter something to search!");
-
         return;
       }
 
       if ("calculator".includes(text)) {
-
         window.location.href = "calculator.html";
-
       } else if ("about".includes(text)) {
-
         window.location.href = "about.html";
-
       } else if ("contact".includes(text)) {
-
         window.location.href = "contact.html";
-
       } else if ("home".includes(text)) {
-
         window.location.href = "index.html";
-
       } else {
-
         alert("Page not found!");
-
       }
-
     }
-
 
     function clearSearch() {
-
-      document
-        .getElementById("searchInput")
-        .value = "";
-
+      document.getElementById("searchInput").value = "";
     }
 
+
+    /* Dark Mode */
 
     function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
 
-      document
-        .body
-        .classList
-        .toggle("dark-mode");
+      let button = document.querySelector(".dark-btn");
 
-      let button =
-        document.querySelector(".dark-btn");
-
-
-      if (
-        document.body.classList.contains("dark-mode")
-      ) {
-
+      if (document.body.classList.contains("dark-mode")) {
         localStorage.setItem("darkMode", "on");
-
         button.innerText = "☀️ Light Mode";
-
       } else {
-
         localStorage.setItem("darkMode", "off");
-
         button.innerText = "🌙 Dark Mode";
-
       }
-
     }
 
-
-    if (
-      localStorage.getItem("darkMode") === "on"
-    ) {
-
+    if (localStorage.getItem("darkMode") === "on") {
       document.body.classList.add("dark-mode");
 
-      document
-        .querySelector(".dark-btn")
-        .innerText = "☀️ Light Mode";
-
+      document.querySelector(".dark-btn").innerText =
+        "☀️ Light Mode";
     }
 
 
-    function toggleMenu() {
+    /* Mobile Menu */
 
+    function toggleMenu() {
       document
         .querySelector("nav")
         .classList
         .toggle("menu-open");
-
     }
 
+
+    /* Movie Details */
 
     function movieMessage(movieName) {
 
@@ -834,24 +933,102 @@ body.dark-mode .movie-filters button:hover {
 
       details.innerHTML =
         "<h2>🎬 " + movieName + "</h2>" +
-        "<p>⭐ Rating: 8/10</p>" +
+        "<p>⭐ Rating: 8.0 / 10</p>" +
         "<p>🎭 Genre: Action • Adventure</p>" +
-        "<p>Enjoy the movie details here!</p>";
+        "<p>✨ Movie details successfully loaded!</p>" +
+        '<button onclick="closeMovieDetails()">✖ Close</button>';
 
       details.style.display = "block";
-
     }
-function showMovies(category) {
-  let movies = document.querySelectorAll(".movie-card");
 
-  movies.forEach(function(movie) {
-    let genre = movie.querySelector("p").innerText.toLowerCase();
-
-    if (category === "all" || genre.includes(category)) {
-      movie.style.display = "block";
-    } else {
-      movie.style.display = "none";
+    function closeMovieDetails() {
+      document.getElementById("movieDetails").style.display = "none";
     }
-  });
-}
-  </script></body></html>
+
+
+    /* Movie Category Filter */
+
+    function showMovies(category) {
+
+      let movies =
+        document.querySelectorAll(".movie-card");
+
+      let found = false;
+
+      movies.forEach(function(movie) {
+
+        let genre =
+          movie.querySelector("p").innerText.toLowerCase();
+
+        if (
+          category === "all" ||
+          genre.includes(category)
+        ) {
+          movie.style.display = "block";
+          found = true;
+        } else {
+          movie.style.display = "none";
+        }
+
+      });
+
+      document.getElementById("noMovieMessage").style.display =
+        found ? "none" : "block";
+    }
+
+
+    /* Movie Search Filter */
+
+    function filterMovies() {
+
+      let searchText =
+        document
+          .getElementById("movieSearch")
+          .value
+          .toLowerCase();
+
+      let movies =
+        document.querySelectorAll(".movie-card");
+
+      let found = false;
+
+      movies.forEach(function(movie) {
+
+        let movieName =
+          movie
+            .querySelector("h3")
+            .innerText
+            .toLowerCase();
+
+        if (movieName.includes(searchText)) {
+
+          movie.style.display = "block";
+          found = true;
+
+        } else {
+
+          movie.style.display = "none";
+
+        }
+
+      });
+
+      document.getElementById("noMovieMessage").style.display =
+        found ? "none" : "block";
+    }
+
+  </script>
+
+</body>
+</html>
+
+Ab kya karna hai
+
+1. "index.html" ka purana पूरा code delete karo.
+2. Upar wala पूरा code paste karo.
+3. Save 💾 karo.
+4. Website Refresh 🔄 karo.
+5. Search box mein "Movie One" likhkar test karo.
+6. "Action", "Comedy", "Drama" buttons bhi test karo.
+
+Maine tumhari "filterMovies()" wali galti, No Movie Found ki wrong position, Close button, ratings, genre badges aur hover effects sab ek saath fix kar diye hain. ✅
