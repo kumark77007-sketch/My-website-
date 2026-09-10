@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Latest Movies & Movie Reviews | My Movie Website</title>
 
-<meta name="description" content="Discover latest movies, movie ratings, genres and original movie information on our movie website.">
+  <meta name="description"
+    content="Discover latest movies, movie ratings, genres and original movie information on our movie website.">
 
-<meta name="keywords" content="latest movies, movie reviews, movie ratings, action movies, comedy movies, drama movies">
+  <meta name="keywords"
+    content="latest movies, movie reviews, movie ratings, action movies, comedy movies, drama movies">
 
-<meta name="author" content="My Movie Website">
+  <meta name="author" content="My Movie Website">
 
-<meta property="og:title"
-  content="🎬 Latest New Movies">
+  <meta property="og:title" content="🎬 Latest New Movies">
+  <meta property="og:description"
+    content="Explore movies, ratings, genres and movie details.">
 
-<meta property="og:description"
-  content="Explore movies, ratings, genres and movie details.">
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -22,34 +29,43 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #e3f2fd, #f5f5f5);
+      background: #f4f7fb;
       color: #222;
       transition: 0.3s;
     }
 
     header {
-      background: #222;
+      background: linear-gradient(135deg, #007bff, #6610f2);
       color: white;
       padding: 25px 15px;
+      text-align: center;
     }
 
-    .logo {
-      font-size: 30px;
-      font-weight: bold;
-      letter-spacing: 1px;
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
     }
 
     nav {
-      background: #333;
+      background: #111;
       padding: 12px;
+      text-align: center;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin: 10px;
+      margin: 0 12px;
       font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #00bfff;
     }
 
     .menu-btn {
@@ -63,172 +79,133 @@
       color: white;
     }
 
-    /* Search */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-    .search-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .welcome-card {
+      max-width: 800px;
       margin: 20px auto;
-      flex-wrap: wrap;
-      padding: 0 10px;
+      padding: 25px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,.1);
+      text-align: center;
     }
 
-    .search-box input {
-      width: 220px;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    .search-box button {
-      padding: 12px 18px;
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      margin: 5px;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
       background: #007bff;
       color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 15px;
     }
 
-    .search-box button:hover {
+    .btn:hover {
       background: #0056b3;
     }
 
-    /* Dark Mode */
-
     .dark-btn {
-      padding: 12px 18px;
-      margin: 15px auto 25px;
-      display: block;
+      padding: 10px 18px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       background: #222;
       color: white;
+      margin: 15px;
     }
 
-    .dark-btn:hover {
-      background: #444;
+    .search-section {
+      text-align: center;
+      padding: 20px;
     }
 
-    /* Hero */
-
-    .hero {
-      padding: 50px 20px 25px;
-      position: relative;
-      overflow: hidden;
+    .search-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-      animation: welcome 1.5s ease-in-out;
-    }
-
-    .hero-text {
-      max-width: 600px;
-      margin: 0 auto 20px;
-      line-height: 1.6;
-      font-size: 17px;
-    }
-
-    .hero::before {
-      content: "🎬";
-      position: absolute;
-      font-size: 80px;
-      opacity: 0.08;
-      top: 20px;
-      left: 10%;
-      animation: movieFloat 3s ease-in-out infinite;
-    }
-
-    /* Buttons */
-
-    .btn {
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      background: #007bff;
-      color: white;
-      padding: 12px 20px;
+    .search-box input {
+      padding: 12px;
+      width: 280px;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      text-decoration: none;
-      margin: 8px;
-      transition: 0.3s;
+      font-size: 16px;
     }
 
-    .btn:hover {
-      background: #0056b3;
-      transform: scale(1.05);
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: skewX(-20deg);
-      transition: 0.5s;
-    }
-
-    .btn:hover::after {
-      left: 100%;
-    }
-
-    /* Features */
-
-    .features,
     .skills,
     .projects {
-      padding: 25px 15px;
-    }
-
-    .feature,
-    .project,
-    .welcome-card,
-    .skills {
-      background: white;
-      max-width: 500px;
-      margin: 15px auto;
+      max-width: 1000px;
+      margin: 30px auto;
       padding: 20px;
+      text-align: center;
+    }
+
+    .skill-card,
+    .project-card {
+      display: inline-block;
+      width: 280px;
+      margin: 10px;
+      padding: 20px;
+      background: white;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,.1);
+      vertical-align: top;
     }
 
-    .skills p {
-      padding: 10px;
-      margin: 8px;
-      background: #f2f2f2;
+    .movies-section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .movies-section h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .movie-search {
+      margin: 20px auto;
+      padding: 12px;
+      width: 280px;
+      max-width: 90%;
+      border: 1px solid #ccc;
       border-radius: 8px;
-    }
-
-    /* Movies */
-
-    .movies {
-      padding: 30px 15px;
+      font-size: 16px;
     }
 
     .movie-filters {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 20px auto;
+      margin: 20px 0;
     }
 
     .movie-filters button {
       padding: 10px 18px;
+      margin: 5px;
       border: none;
       border-radius: 8px;
       background: #007bff;
       color: white;
       cursor: pointer;
-      font-size: 15px;
     }
 
     .movie-filters button:hover {
@@ -238,8 +215,8 @@
     .movie-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 20px;
     }
 
     .movie-card {
@@ -247,14 +224,15 @@
       background: white;
       padding: 15px;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 5px 15px rgba(0,0,0,.12);
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform .3s ease, box-shadow .3s ease;
+      text-align: left;
     }
 
     .movie-card:hover {
       transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 25px rgba(0,0,0,.2);
     }
 
     .movie-poster {
@@ -265,11 +243,12 @@
       justify-content: center;
       gap: 10px;
       font-size: 70px;
-      background: linear-gradient(135deg, #222, #555);
+      background: linear-gradient(135deg,#222,#555);
       border-radius: 12px;
       color: white;
       font-weight: bold;
-      transition: 0.3s;
+      transition: .3s;
+      text-align: center;
     }
 
     .movie-card:hover .movie-poster {
@@ -282,11 +261,7 @@
     }
 
     .movie-card h3 {
-      margin-bottom: 5px;
-    }
-
-    .movie-card p {
-      color: #666;
+      margin-top: 15px;
     }
 
     .movie-rating {
@@ -305,174 +280,55 @@
       font-weight: bold;
       margin: 5px 0 10px;
     }
-.movie-description {
-  margin: 10px 0;
-  line-height: 1.5;
-  font-size: 14px;
-  color: #555;
-}
 
-body.dark-mode .movie-description {
-  color: #ccc;
-}
+    .movie-description {
+      margin: 10px 0;
+      line-height: 1.5;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .release-date {
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+      margin: 8px 0;
+    }
+
     .download-options {
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 10px;
-  background: #f5f5f5;
-}
-
-.download-options p {
-  margin: 5px 0 10px;
-  font-weight: bold;
-}
-
-.download-options .btn {
-  margin: 5px;
-  font-size: 14px;
-}
-
-body.dark-mode .download-options {
-  background: #2a2a2a;
-}
-    /* Movie Search */
-
-    #movieSearch {
-      display: block;
-      width: 90%;
-      max-width: 400px;
-      margin: 20px auto;
-      padding: 12px 15px;
-      border: 1px solid #ccc;
+      margin-top: 15px;
+      padding: 10px;
       border-radius: 10px;
-      font-size: 16px;
-      outline: none;
+      background: #f5f5f5;
     }
 
-    #movieSearch:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    .download-options p {
+      margin: 5px 0 10px;
+      font-weight: bold;
     }
 
-    /* No Movie */
+    .download-options .btn {
+      margin: 5px;
+      font-size: 14px;
+    }
 
     .no-movie-message {
       display: none;
-      margin: 20px auto;
+      margin: 25px;
       font-size: 18px;
       font-weight: bold;
     }
 
-    /* Movie Details */
-
     .movie-details {
       display: none;
-      max-width: 500px;
       margin: 25px auto;
       padding: 20px;
+      max-width: 600px;
       background: white;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-      animation: detailsShow 0.4s ease;
-    }
-
-    .movie-details button {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .movie-details button:hover {
-      background: #0056b3;
-    }
-
-    /* Social */
-
-    .social-links {
-      margin-top: 15px;
-    }
-
-    /* Footer */
-
-    footer {
-      background: #222;
-      color: white;
-      padding: 20px;
-      margin-top: 30px;
-    }
-
-    /* Dark Mode */
-
-    body.dark-mode {
-      background: #121212;
-      color: white;
-    }
-
-    body.dark-mode .feature,
-    body.dark-mode .project,
-    body.dark-mode .welcome-card,
-    body.dark-mode .skills,
-    body.dark-mode .movie-card,
-    body.dark-mode .movie-details {
-      background: #1e1e1e;
-      color: white;
-    }
-
-    body.dark-mode .skills p {
-      background: #2a2a2a;
-      color: white;
-    }
-
-    body.dark-mode .movie-poster {
-      background: #2a2a2a;
-    }
-
-    body.dark-mode .movie-card p {
-      color: #ccc;
-    }
-
-    body.dark-mode .search-box input,
-    body.dark-mode #movieSearch {
-      background: #1e1e1e;
-      color: white;
-      border-color: #555;
-    }
-
-    body.dark-mode .movie-filters button {
-      background: #444;
-    }
-
-    body.dark-mode .movie-filters button:hover {
-      background: #666;
-    }
-
-    /* Animations */
-
-    @keyframes welcome {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes movieFloat {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-15px);
-      }
+      box-shadow: 0 5px 15px rgba(0,0,0,.12);
+      animation: detailsShow .4s ease;
+      text-align: center;
     }
 
     @keyframes detailsShow {
@@ -487,9 +343,54 @@ body.dark-mode .download-options {
       }
     }
 
-    /* Mobile */
+    footer {
+      margin-top: 40px;
+      padding: 25px;
+      background: #111;
+      color: white;
+      text-align: center;
+    }
 
-    @media (max-width: 600px) {
+    /* DARK MODE */
+
+    body.dark-mode {
+      background: #121212;
+      color: white;
+    }
+
+    body.dark-mode .welcome-card,
+    body.dark-mode .skill-card,
+    body.dark-mode .project-card,
+    body.dark-mode .movie-card,
+    body.dark-mode .movie-details {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    body.dark-mode .movie-description {
+      color: #ccc;
+    }
+
+    body.dark-mode .release-date {
+      color: #ccc;
+    }
+
+    body.dark-mode .download-options {
+      background: #2a2a2a;
+    }
+
+    body.dark-mode .genre-badge {
+      background: #444;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:600px) {
+
+      header h1 {
+        font-size: 25px;
+      }
+
       .menu-btn {
         display: inline-block;
         margin-bottom: 10px;
@@ -504,63 +405,42 @@ body.dark-mode .download-options {
         margin: 12px;
       }
 
-      .hero {
-        padding: 35px 15px;
-      }
-
-      .hero h1 {
-        font-size: 26px;
-      }
-
-      .btn {
-        display: block;
-        margin: 10px auto;
-        max-width: 200px;
-      }
-
-      .search-box {
-        flex-direction: column;
-      }
-
-      .search-box input,
-      .search-box button {
-        width: 90%;
-      }
-
-      .feature,
-      .project,
-      .welcome-card,
-      .skills {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-
-      .movie-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
       .movie-card {
-        width: 90%;
+        width: 95%;
         max-width: 320px;
       }
+
+      .skill-card,
+      .project-card {
+        width: 90%;
+      }
+
+      .search-box input {
+        width: 90%;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">
-      🌟 Latest New Movies Website
-    </div>
+  <!-- HEADER -->
 
-    <p>
-      Welcome to my website 👋
-    </p>
+  <header>
+    <h1>🎬 My Movie Website</h1>
+    <p>Latest Movies • Ratings • Genres • Movie Information</p>
+
+    <button class="dark-btn" onclick="toggleDarkMode()">
+      🌙 Dark Mode
+    </button>
   </header>
 
+
+  <!-- NAVIGATION -->
+
   <nav>
+
     <button class="menu-btn" onclick="toggleMenu()">
       ☰ Menu
     </button>
@@ -569,615 +449,621 @@ body.dark-mode .download-options {
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="calculator.html">Calculator</a>
+
   </nav>
 
-  <form onsubmit="searchWebsite(event)" class="search-box">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search..."
-    >
 
-    <button type="submit">
-      Search 🔍
-    </button>
-
-    <button type="button" onclick="clearSearch()">
-      Clear
-    </button>
-  </form>
+  <!-- HERO -->
 
   <section class="hero">
 
-    <h1>
-      Namaste! 👋
-    </h1>
-
-    <button class="dark-btn" onclick="toggleDarkMode()">
-      🌙 Dark Mode
-    </button>
+    <h2>Welcome to My Movie Website 🎬</h2>
 
     <p>
-      Ye meri personal website hai.
+      Discover movies, ratings, genres and useful movie information
+      in one simple website.
     </p>
 
-    <p class="hero-text">
-      Welcome to my website! Yahan aap mere projects aur skills dekh sakte hain.
+  </section>
+
+
+  <!-- SEARCH WEBSITE -->
+
+  <section class="search-section">
+
+    <h2>🔎 Search Website</h2>
+
+    <form onsubmit="searchWebsite(event)" class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search..."
+      >
+
+      <button type="submit" class="btn">
+        Search 🔍
+      </button>
+
+      <button
+        type="button"
+        class="btn"
+        onclick="clearSearch()">
+        Clear
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- WELCOME CARD -->
+
+  <div class="welcome-card">
+
+    <h2>🚀 Explore My Website</h2>
+
+    <p>
+      Use the menu above to explore different pages.
     </p>
 
-    <a class="btn" href="about.html">
-      Know More →
+    <a href="about.html" class="btn">
+      About Me
     </a>
 
-    <a class="btn" href="calculator.html">
-      🎬 Watch Now
-    </a>
-
-    <a class="btn" href="contact.html">
+    <a href="contact.html" class="btn">
       Contact
     </a>
 
-    <a class="btn" href="about.html">
-      Get Started 🚀
+    <a href="calculator.html" class="btn">
+      Calculator
     </a>
 
-    <div class="social-links">
+  </div>
 
-      <a
-        class="btn"
-        href="https://github.com/"
-        target="_blank"
-      >
-        GitHub
-      </a>
 
-      <a
-        class="btn"
-        href="https://www.linkedin.com/"
-        target="_blank"
-      >
-        LinkedIn
-      </a>
-
-    </div>
-
-  </section>
-
-  <section class="features">
-
-    <h2>
-      My Website Features
-    </h2>
-
-    <div class="feature">
-      <h3>🌐 Personal Website</h3>
-      <p>Ye meri personal website hai.</p>
-    </div>
-
-    <div class="feature">
-      <h3>📱 Mobile Friendly</h3>
-      <p>Website mobile par bhi use ki ja sakti hai.</p>
-    </div>
-
-    <div class="feature">
-      <h3>💻 Web Development</h3>
-      <p>Main HTML, CSS aur JavaScript seekh raha hoon.</p>
-    </div>
-
-  </section>
+  <!-- SKILLS -->
 
   <section class="skills">
 
-    <h2>
-      My Skills 💻
-    </h2>
+    <h2>💻 My Skills</h2>
 
-    <p>🌐 HTML — Website Structure</p>
-    <p>🎨 CSS — Website Design</p>
-    <p>⚡ JavaScript — Website Functionality</p>
+    <div class="skill-card">
+      <h3>HTML</h3>
+      <p>Website structure banana.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>CSS</h3>
+      <p>Website ko beautiful aur responsive banana.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <p>Website mein interactive features add karna.</p>
+    </div>
 
   </section>
 
-  <!-- Movies Section -->
 
-  <section class="movies">
+  <!-- PROJECTS -->
 
-    <h2>
-      🎬 Latest Movies
-    </h2>
-<p>
-  Discover latest movies, ratings, genres and movie details.
-</p>
-    <div class="movie-filters">
-      <button onclick="showMovies('all')">All</button>
-      <button onclick="showMovies('action')">Action</button>
-      <button onclick="showMovies('comedy')">Comedy</button>
-      <button onclick="showMovies('drama')">Drama</button>
+  <section class="projects">
+
+    <h2>📂 My Projects</h2>
+
+    <div class="project-card">
+      <h3>🎬 Movie Website</h3>
+      <p>
+        Movie search, filters, ratings aur details.
+      </p>
     </div>
+
+    <div class="project-card">
+      <h3>🧮 Calculator</h3>
+      <p>
+        Simple working calculator project.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>📱 Responsive Website</h3>
+      <p>
+        Mobile aur desktop dono ke liye responsive design.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- MOVIES -->
+
+  <section class="movies-section">
+
+    <h2>🎬 Latest Movies</h2>
+
+    <p>
+      Search and explore movies below.
+    </p>
+
+
+    <!-- MOVIE SEARCH -->
 
     <input
       type="text"
       id="movieSearch"
+      class="movie-search"
       placeholder="Search movies..."
       onkeyup="filterMovies()"
     >
 
+
+    <!-- MOVIE FILTERS -->
+
+    <div class="movie-filters">
+
+      <button onclick="showMovies('all')">
+        All
+      </button>
+
+      <button onclick="showMovies('action')">
+        Action
+      </button>
+
+      <button onclick="showMovies('comedy')">
+        Comedy
+      </button>
+
+      <button onclick="showMovies('drama')">
+        Drama
+      </button>
+
+    </div>
+
+
+    <!-- MOVIE DETAILS -->
+
+    <div id="movieDetails" class="movie-details"></div>
+
+
+    <!-- MOVIES CONTAINER -->
+
     <div class="movie-container">
 
-      <!-- Movie One -->
+
+      <!-- MOVIE ONE -->
 
       <div
         class="movie-card"
-        onclick="movieMessage('Movie One')"
-      >
+        onclick="movieMessage('Movie One')">
 
         <div class="movie-poster">
+
           🎬
-          <span>Movie One</span>
+
+          <span>
+            Movie One
+          </span>
+
         </div>
 
+
+        <p class="release-date">
+          📅 Release Date: 10 September 2026
+        </p>
+
+
         <h3>
-  🎬 Movie One - Action Adventure
+          🎬 Movie One - Action Adventure
         </h3>
+
 
         <p>
           Action • Adventure
         </p>
 
+
         <div class="movie-rating">
           ⭐ 8.0 / 10
         </div>
 
+
         <div class="genre-badge">
           Action • Adventure
         </div>
-<p class="movie-description">
-  An exciting action-adventure movie full of thrilling moments.
-</p>
+
+
+        <p class="movie-description">
+          An exciting action-adventure movie full of thrilling moments.
+        </p>
+
+
+        <!-- DOWNLOAD -->
+
         <div class="download-options">
 
-  <p><strong>⬇️ Download Now</strong></p>
+          <p>
+            ⬇️ Download Quality:
+          </p>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    1080p Full HD
-  </a>
+          <a
+            class="btn"
+            href="movie-one-1080p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            1080p Full HD
+          </a>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    720p HD
-  </a>
+          <a
+            class="btn"
+            href="movie-one-720p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            720p HD
+          </a>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    480p
-  </a>
+          <a
+            class="btn"
+            href="movie-one-480p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            480p
+          </a>
+
+          <a
+            class="btn"
+            href="movie-one-360p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            360p
+          </a>
 
         </div>
-<div class="download-options">
 
-  <p>⬇️ Download Quality:</p>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    1080p Full HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    720p HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    480p
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_360P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    360p
-  </a>
-
-</div>
       </div>
 
-      <!-- Movie Two -->
+
+      <!-- MOVIE TWO -->
 
       <div
         class="movie-card"
-        onclick="movieMessage('Movie Two')"
-      >
+        onclick="movieMessage('Movie Two')">
 
         <div class="movie-poster">
+
+          🎥
+
+          <span>
+            Movie Two
+          </span>
+
+        </div>
+
+
+        <p class="release-date">
+          📅 Release Date: 15 September 2026
+        </p>
+
+
+        <h3>
+          🎥 Movie Two - Comedy
+        </h3>
+
+
+        <p>
+          Comedy
+        </p>
+
+
+        <div class="movie-rating">
+          ⭐ 8.5 / 10
+        </div>
+
+
+        <div class="genre-badge">
+          Comedy
+        </div>
+
+
+        <p class="movie-description">
+          A fun comedy movie full of entertaining and funny moments.
+        </p>
+
+
+        <!-- DOWNLOAD -->
+
+        <div class="download-options">
+
+          <p>
+            ⬇️ Download Quality:
+          </p>
+
+          <a
+            class="btn"
+            href="movie-two-1080p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            1080p Full HD
+          </a>
+
+          <a
+            class="btn"
+            href="movie-two-720p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            720p HD
+          </a>
+
+          <a
+            class="btn"
+            href="movie-two-480p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            480p
+          </a>
+
+          <a
+            class="btn"
+            href="movie-two-360p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            360p
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- MOVIE THREE -->
+
+      <div
+        class="movie-card"
+        onclick="movieMessage('Movie Three')">
+
+        <div class="movie-poster">
+
           🍿
-          <span>Movie Two</span>
+
+          <span>
+            Movie Three
+          </span>
+
         </div>
 
-        <h3>
-  🍿 Movie Two - Comedy Family
-        </h3>
 
-        <p>
-          Comedy • Family
+        <p class="release-date">
+          📅 Release Date: 20 September 2026
         </p>
 
-        <div class="movie-rating">
-          ⭐ 8.0 / 10
-        </div>
-
-        <div class="genre-badge">
-          Comedy • Family
-        </div>
-<p class="movie-description">
-  A fun comedy movie suitable for family entertainment.
-</p>
-        <div class="download-options">
-
-  <p><strong>⬇️ Download Now</strong></p>
-
-  <a class="btn"
-     href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    1080p Full HD
-  </a>
-
-  <a class="btn"
-     href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    720p HD
-  </a>
-
-  <a class="btn"
-     href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    480p
-  </a>
-
-</div>
-<div class="download-options">
-
-  <p>⬇️ Download Quality:</p>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    1080p Full HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    720p HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    480p
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_360P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    360p
-  </a>
-
-</div>
-      </div>
-
-      <!-- Movie Three -->
-
-      <div
-        class="movie-card"
-        onclick="movieMessage('Movie Three')"
-      >
-
-        <div class="movie-poster">
-          ⭐
-          <span>Movie Three</span>
-        </div>
 
         <h3>
-  ⭐ Movie Three - Drama Mystery
+          🍿 Movie Three - Drama
         </h3>
-<p class="movie-description">
-  A mysterious drama movie with an interesting story.
-</p>
+
+
         <p>
-          Drama • Mystery
+          Drama
         </p>
 
+
         <div class="movie-rating">
-          ⭐ 8.0 / 10
+          ⭐ 9.0 / 10
         </div>
 
+
         <div class="genre-badge">
-          Drama • Mystery
+          Drama
         </div>
+
+
+        <p class="movie-description">
+          An emotional drama movie with an interesting story.
+        </p>
+
+
+        <!-- DOWNLOAD -->
 
         <div class="download-options">
 
-  <p><strong>⬇️ Download Now</strong></p>
+          <p>
+            ⬇️ Download Quality:
+          </p>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    1080p Full HD
-  </a>
+          <a
+            class="btn"
+            href="movie-three-1080p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            1080p Full HD
+          </a>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    720p HD
-  </a>
+          <a
+            class="btn"
+            href="movie-three-720p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            720p HD
+          </a>
 
-  <a class="btn"
-     href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-     download
-     onclick="event.stopPropagation()">
-    480p
-  </a>
+          <a
+            class="btn"
+            href="movie-three-480p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            480p
+          </a>
+
+          <a
+            class="btn"
+            href="movie-three-360p.mp4"
+            download
+            onclick="event.stopPropagation()">
+            360p
+          </a>
 
         </div>
-<div class="download-options">
 
-  <p>⬇️ Download Quality:</p>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_1080P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    1080p Full HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_720P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    720p HD
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_480P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    480p
-  </a>
-
-  <a
-    class="btn"
-    href="YOUR_AUTHORIZED_360P_VIDEO.mp4"
-    download
-    onclick="event.stopPropagation()"
-  >
-    360p
-  </a>
-
-</div>
       </div>
 
     </div>
 
-    <!-- No Movie Message -->
 
-    <p id="noMovieMessage" class="no-movie-message">
+    <!-- NO MOVIE -->
+
+    <p
+      id="noMovieMessage"
+      class="no-movie-message">
       😕 No movie found!
     </p>
 
-    <!-- Movie Details -->
-
-    <div
-      id="movieDetails"
-      class="movie-details"
-    ></div>
-
   </section>
 
-  <section class="projects">
 
-    <h2>
-      My Projects 🚀
-    </h2>
-
-    <div class="project">
-
-      <h3>
-        🌐 My First Website
-      </h3>
-
-      <p>
-        HTML aur CSS se banayi hui meri website.
-      </p>
-
-    </div>
-
-    <div class="project">
-
-      <h3>
-        🧮 Calculator
-      </h3>
-
-      <p>
-        JavaScript se banaya hua calculator.
-      </p>
-
-      <a
-        class="btn"
-        href="calculator.html"
-      >
-        Open Calculator
-      </a>
-
-    </div>
-
-  </section>
-
-  <div class="welcome-card">
-
-    <h2>
-      Welcome! 👋
-    </h2>
-
-    <p>
-      Ye meri first professional website hai.
-    </p>
-
-    <p>
-      Main HTML, CSS aur JavaScript seekh raha hoon.
-    </p>
-
-  </div>
+  <!-- FOOTER -->
 
   <footer>
 
     <p>
-      © 2026 My Website
+      © 2026 My Movie Website. All Rights Reserved.
     </p>
 
     <p>
-      Made with ❤️ using HTML, CSS &amp; JavaScript
+      🎬 Made with HTML, CSS & JavaScript
     </p>
 
   </footer>
 
+
+  <!-- JAVASCRIPT -->
+
   <script>
 
-    /* Website Search */
+    /* WEBSITE SEARCH */
 
     function searchWebsite(event) {
+
       event.preventDefault();
 
-      let text = document
+      let text =
+        document
         .getElementById("searchInput")
         .value
         .toLowerCase()
         .replace(/\s+/g, "");
 
       if (text === "") {
+
         alert("Please enter something to search!");
+
         return;
       }
 
       if ("calculator".includes(text)) {
+
         window.location.href = "calculator.html";
-      } else if ("about".includes(text)) {
-        window.location.href = "about.html";
-      } else if ("contact".includes(text)) {
-        window.location.href = "contact.html";
-      } else if ("home".includes(text)) {
-        window.location.href = "index.html";
-      } else {
-        alert("Page not found!");
+
       }
+
+      else if ("about".includes(text)) {
+
+        window.location.href = "about.html";
+
+      }
+
+      else if ("contact".includes(text)) {
+
+        window.location.href = "contact.html";
+
+      }
+
+      else if ("home".includes(text)) {
+
+        window.location.href = "index.html";
+
+      }
+
+      else {
+
+        alert("Page not found!");
+
+      }
+
     }
+
 
     function clearSearch() {
-      document.getElementById("searchInput").value = "";
+
+      document
+        .getElementById("searchInput")
+        .value = "";
+
     }
 
 
-    /* Dark Mode */
+    /* DARK MODE */
 
     function toggleDarkMode() {
+
       document.body.classList.toggle("dark-mode");
 
-      let button = document.querySelector(".dark-btn");
+      let button =
+        document.querySelector(".dark-btn");
 
-      if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("darkMode", "on");
-        button.innerText = "☀️ Light Mode";
-      } else {
-        localStorage.setItem("darkMode", "off");
-        button.innerText = "🌙 Dark Mode";
+      if (
+        document.body.classList.contains("dark-mode")
+      ) {
+
+        localStorage.setItem(
+          "darkMode",
+          "on"
+        );
+
+        button.innerText =
+          "☀️ Light Mode";
+
       }
+
+      else {
+
+        localStorage.setItem(
+          "darkMode",
+          "off"
+        );
+
+        button.innerText =
+          "🌙 Dark Mode";
+
+      }
+
     }
 
-    if (localStorage.getItem("darkMode") === "on") {
+
+    if (
+      localStorage.getItem("darkMode") === "on"
+    ) {
+
       document.body.classList.add("dark-mode");
 
       document.querySelector(".dark-btn").innerText =
         "☀️ Light Mode";
+
     }
 
 
-    /* Mobile Menu */
+    /* MOBILE MENU */
 
     function toggleMenu() {
+
       document
         .querySelector("nav")
         .classList
         .toggle("menu-open");
+
     }
 
 
-    /* Movie Details */
-
-    function movieMessage(movieName) {
-
-      let details =
-        document.getElementById("movieDetails");
-
-      details.innerHTML =
-        "<h2>🎬 " + movieName + "</h2>" +
-        "<p>⭐ Rating: 8.0 / 10</p>" +
-        "<p>🎭 Genre: Action • Adventure</p>" +
-        "<p>✨ Movie details successfully loaded!</p>" +
-        '<button onclick="closeMovieDetails()">✖ Close</button>';
-
-      details.style.display = "block";
-    }
-
-    function closeMovieDetails() {
-      document.getElementById("movieDetails").style.display = "none";
-    }
-
-
-    /* Movie Category Filter */
+    /* MOVIE FILTER */
 
     function showMovies(category) {
 
@@ -1189,56 +1075,104 @@ body.dark-mode .download-options {
       movies.forEach(function(movie) {
 
         let genre =
-          movie.querySelector("p").innerText.toLowerCase();
+          movie
+          .querySelector(".genre-badge")
+          .innerText
+          .toLowerCase();
 
         if (
           category === "all" ||
           genre.includes(category)
         ) {
+
           movie.style.display = "block";
+
           found = true;
-        } else {
+
+        }
+
+        else {
+
           movie.style.display = "none";
+
         }
 
       });
 
-      document.getElementById("noMovieMessage").style.display =
+
+      document
+        .getElementById("noMovieMessage")
+        .style.display =
         found ? "none" : "block";
+
     }
 
 
-    /* Movie Search Filter */
+    /* MOVIE SEARCH */
 
     function filterMovies() {
 
-  let searchText = document
-    .getElementById("movieSearch")
-    .value
-    .toLowerCase()
-    .trim();
+      let searchText =
+        document
+        .getElementById("movieSearch")
+        .value
+        .toLowerCase()
+        .trim();
 
-  let movies = document.querySelectorAll(".movie-card");
-  let found = false;
+      let movies =
+        document.querySelectorAll(".movie-card");
 
-  movies.forEach(function(movie) {
+      let found = false;
 
-    let movieText = movie.innerText.toLowerCase();
+      movies.forEach(function(movie) {
 
-    if (movieText.includes(searchText)) {
-      movie.style.display = "block";
-      found = true;
-    } else {
-      movie.style.display = "none";
+        let movieText =
+          movie.innerText.toLowerCase();
+
+        if (
+          movieText.includes(searchText)
+        ) {
+
+          movie.style.display = "block";
+
+          found = true;
+
+        }
+
+        else {
+
+          movie.style.display = "none";
+
+        }
+
+      });
+
+
+      document
+        .getElementById("noMovieMessage")
+        .style.display =
+        found ? "none" : "block";
+
     }
 
-  });
 
-  document.getElementById("noMovieMessage").style.display =
-    found ? "none" : "block";
-    }
+    /* MOVIE DETAILS */
 
-  </script>
+    function movieMessage(movieName) {
 
-</body>
-</html>
+      let details =
+        document.getElementById("movieDetails");
+
+      details.innerHTML =
+
+        "<h2>🎬 " +
+        movieName +
+        "</h2>" +
+
+        "<p>⭐ Rating: 8.0 / 10</p>" +
+
+        "<p>🎭 Genre: Action • Adventure</p>" +
+
+        "<p>✨ Movie details successfully loaded!</p>" +
+
+        '<bu
