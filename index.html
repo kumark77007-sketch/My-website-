@@ -1243,7 +1243,27 @@ function showMovies(category) {
 
 }
 
+function movieMessage(movieName) {
 
+  const details = document.getElementById("movieDetails");
+
+  details.innerHTML =
+    "<h2>🎬 " + movieName + "</h2>" +
+    "<p>⭐ Movie information</p>" +
+    "<p>🎭 Genre and rating available above.</p>" +
+    "<p>✨ Movie details successfully loaded!</p>" +
+    '<button class="btn" onclick="closeMovieDetails()">✖ Close</button>';
+
+  details.style.display = "block";
+}
+
+
+function closeMovieDetails() {
+
+  const details = document.getElementById("movieDetails");
+
+  details.style.display = "none";
+}
 /* MOVIE DETAILS */
 
 function movieMessage(movieName) {
