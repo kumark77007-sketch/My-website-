@@ -696,24 +696,49 @@
 
     <form class="search-box" onsubmit="event.preventDefault(); filterMovies();">
 
-  <input
-    type="text"
-    id="movieSearch"
-    placeholder="🔎 Search movie, genre, date..."
-  >
+  function filterMovies(event) {
 
-  <button type="submit">
-    Search 🔍
-  </button>
+  event.preventDefault();
 
-  <button
-    type="button"
-    onclick="document.getElementById('movieSearch').value=''; filterMovies();"
-  >
-    Clear
-  </button>
+  let searchText = document
+    .getElementById("movieSearch")
+    .value
+    .toLowerCase()
+    .trim();
 
-    </form>
+  let movies = document.querySelectorAll(".movie-card");
+  let found = false;
+
+  movies.forEach(function(movie) {
+
+    let movieText = movie.innerText.toLowerCase();
+
+    if (movieText.includes(searchText)) {
+      movie.style.display = "block";
+      found = true;
+    } else {
+      movie.style.display = "none";
+    }
+
+  });
+
+  document.getElementById("noMovieMessage").style.display =
+    found ? "none" : "block";
+}
+
+
+function clearMovieSearch() {
+
+  document.getElementById("movieSearch").value = "";
+
+  let movies = document.querySelectorAll(".movie-card");
+
+  movies.forEach(function(movie) {
+    movie.style.display = "block";
+  });
+
+  document.getElementById("noMovieMessage").style.display = "none";
+}
 
 
     <!-- MOVIE FILTERS -->
