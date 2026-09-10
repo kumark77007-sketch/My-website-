@@ -696,49 +696,23 @@
 
     <form class="search-box" onsubmit="event.preventDefault(); filterMovies();">
 
-  function filterMovies(event) {
+  <form class="search-box" onsubmit="filterMovies(event)">
 
-  event.preventDefault();
+  <input
+    type="text"
+    id="movieSearch"
+    placeholder="🔎 Search movie..."
+  >
 
-  let searchText = document
-    .getElementById("movieSearch")
-    .value
-    .toLowerCase()
-    .trim();
+  <button type="submit">
+    Search 🔍
+  </button>
 
-  let movies = document.querySelectorAll(".movie-card");
-  let found = false;
+  <button type="button" onclick="clearMovieSearch()">
+    Clear
+  </button>
 
-  movies.forEach(function(movie) {
-
-    let movieText = movie.innerText.toLowerCase();
-
-    if (movieText.includes(searchText)) {
-      movie.style.display = "block";
-      found = true;
-    } else {
-      movie.style.display = "none";
-    }
-
-  });
-
-  document.getElementById("noMovieMessage").style.display =
-    found ? "none" : "block";
-}
-
-
-function clearMovieSearch() {
-
-  document.getElementById("movieSearch").value = "";
-
-  let movies = document.querySelectorAll(".movie-card");
-
-  movies.forEach(function(movie) {
-    movie.style.display = "block";
-  });
-
-  document.getElementById("noMovieMessage").style.display = "none";
-}
+  </form>
 
 
     <!-- MOVIE FILTERS -->
@@ -1232,7 +1206,9 @@ document.addEventListener("DOMContentLoaded", function () {
      MOVIE SEARCH
      ========================= */
 
-  function filterMovies() {
+  function filterMovies(event) {
+
+  event.preventDefault();
 
   let searchText = document
     .getElementById("movieSearch")
@@ -1258,7 +1234,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("noMovieMessage").style.display =
     found ? "none" : "block";
-  }
+}
+
+
+function clearMovieSearch() {
+
+  document.getElementById("movieSearch").value = "";
+
+  let movies = document.querySelectorAll(".movie-card");
+
+  movies.forEach(function(movie) {
+    movie.style.display = "block";
+  });
+
+  document.getElementById("noMovieMessage").style.display = "none";
+}
 
   };
 
