@@ -909,39 +909,38 @@ function showMovies(category) {
 
 
 function movieMessage(movieName) {
-
-  const details =
-    document.getElementById("movieDetails");
-
+  const details = document.getElementById("movieDetails");
 
   if (!details) return;
 
+  let description = "";
+  let genre = "";
+
+  if (movieName === "Mirzapur: The Movie") {
+    genre = "Crime Action";
+    description =
+      "Power, rivalry aur revenge se bhari ek thrilling crime-action kahani.";
+  } 
+  else if (movieName === "Funny Adventure") {
+    genre = "Comedy Adventure";
+    description =
+      "A fun comedy adventure full of friendship, funny moments and exciting journeys.";
+  } 
+  else if (movieName === "Emotional Story") {
+    genre = "Drama";
+    description =
+      "An emotional drama about family, friendship, dreams and overcoming challenges.";
+  }
 
   details.innerHTML =
     "<h2>🎬 " + movieName + "</h2>" +
-    "<p>⭐ Movie information</p>" +
-    "<p>✨ Movie details successfully loaded!</p>" +
-    '<button class="btn" onclick="closeMovieDetails()">✖ Close</button>';
-
+    "<p>🎭 Genre: " + genre + "</p>" +
+    "<p>📝 " + description + "</p>" +
+    '<button class="details-btn" onclick="closeMovieDetails()">✖ Close</button>';
 
   details.style.display = "block";
-
+  details.scrollIntoView({ behavior: "smooth" });
 }
-
-
-
-function closeMovieDetails() {
-
-  const details =
-    document.getElementById("movieDetails");
-
-
-  if (details) {
-    details.style.display = "none";
-  }
-
-}
-
   </script>
       
 
