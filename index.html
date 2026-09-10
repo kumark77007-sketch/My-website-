@@ -664,348 +664,253 @@
 
   <script>
 
-    /* DARK MODE */
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
 
-    function toggleDarkMode() {
+  localStorage.setItem(
+    "darkMode",
+    document.body.classList.contains("dark-mode") ? "on" : "off"
+  );
 
-      document.body.classList.toggle("dark-mode");
-
-      if (
-        document.body.classList.contains("dark-mode")
-      ) {
-
-        localStorage.setItem(
-          "darkMode",
-          "on"
-        );
-
-      } else {
-
-        localStorage.setItem(
-          "darkMode",
-          "off"
-        );
-
-      }
-
-      updateDarkButton();
-
-    }
+  updateDarkButton();
+}
 
 
-    function updateDarkButton() {
+function updateDarkButton() {
 
-      const darkButton =
-        document.querySelector(".dark-btn");
+  const darkButton = document.querySelector(".dark-btn");
 
-      if (!darkButton) return;
+  if (!darkButton) return;
 
-      if (
-        document.body.classList.contains("dark-mode")
-      ) {
+  if (document.body.classList.contains("dark-mode")) {
+    darkButton.innerText = "☀️ Light Mode";
+  } else {
+    darkButton.innerText = "🌙 Dark Mode";
+  }
 
-        darkButton.innerText =
-          "☀️ Light Mode";
-
-      } else {
-
-        darkButton.innerText =
-          "🌙 Dark Mode";
-
-      }
-
-    }
+}
 
 
-    /* LOAD DARK MODE */
+if (localStorage.getItem("darkMode") === "on") {
+  document.body.classList.add("dark-mode");
+}
+
+updateDarkButton();
+
+
+
+function toggleMenu() {
+
+  const nav = document.querySelector("nav");
+
+  if (nav) {
+    nav.classList.toggle("menu-open");
+  }
+
+}
+
+
+
+function filterMovies(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+  const searchInput =
+    document.getElementById("movieSearch");
+
+  const noMovieMessage =
+    document.getElementById("noMovieMessage");
+
+  const movies =
+    document.querySelectorAll(".movie-card");
+
+
+  if (!searchInput || !noMovieMessage) {
+    return;
+  }
+
+
+  const searchText =
+    searchInput.value.toLowerCase().trim();
+
+
+  let found = false;
+
+
+  movies.forEach(function(movie) {
+
+    const titleElement =
+      movie.querySelector("h3");
+
+    const releaseElement =
+      movie.querySelector(".release-date");
+
+    const genreElement =
+      movie.querySelector(".genre-badge");
+
+    const descriptionElement =
+      movie.querySelector(".movie-description");
+
+
+    const title =
+      titleElement ? titleElement.innerText : "";
+
+    const releaseDate =
+      releaseElement ? releaseElement.innerText : "";
+
+    const genre =
+      genreElement ? genreElement.innerText : "";
+
+    const description =
+      descriptionElement ? descriptionElement.innerText : "";
+
+
+    const searchableText =
+      (
+        title +
+        " " +
+        releaseDate +
+        " " +
+        genre +
+        " " +
+        description
+      ).toLowerCase();
+
 
     if (
-      localStorage.getItem("darkMode") === "on"
+      searchText === "" ||
+      searchableText.includes(searchText)
     ) {
 
-      document.body.classList.add("dark-mode");
+      movie.style.display = "block";
+      found = true;
+
+    } else {
+
+      movie.style.display = "none";
 
     }
 
-    updateDarkButton();
+  });
 
 
-    /* MOBILE MENU */
+  if (found) {
+    noMovieMessage.style.display = "none";
+  } else {
+    noMovieMessage.style.display = "block";
+  }
 
-    function toggleMenu() {
+}
 
-      const nav =
-        document.querySelector("nav");
 
-      if (nav) {
 
-        nav.classList.toggle("menu-open");
+function clearMovieSearch() {
 
-      }
+  const searchInput =
+    document.getElementById("movieSearch");
 
+  if (!searchInput) return;
+
+  searchInput.value = "";
+
+  filterMovies();
+
+}
+
+
+
+function showMovies(category) {
+
+  const movies =
+    document.querySelectorAll(".movie-card");
+
+  const noMovieMessage =
+    document.getElementById("noMovieMessage");
+
+  let found = false;
+
+
+  movies.forEach(function(movie) {
+
+    const genreElement =
+      movie.querySelector(".genre-badge");
+
+
+    if (!genreElement) {
+      return;
     }
 
 
-    /* MOVIE SEARCH */
-
-    function filterMovies(event) {
-
-      if (event) {
-
-        event.preventDefault();
-
-      }
-
-      const searchInput =
-        document.getElementById("movieSearch");
-
-      const noMovieMessage =
-        document.getElementById("noMovieMessage");
-
-      const movies =
-        document.querySelectorAll(".movie-card");
+    const genre =
+      genreElement.innerText.toLowerCase();
 
 
-      if (!searchInput || !noMovieMessage) {
+    if (
+      category === "all" ||
+      genre.includes(category.toLowerCase())
+    ) {
 
-        return;
+      movie.style.display = "block";
+      found = true;
 
-      }
+    } else {
 
-
-      const searchText =
-        searchInput.value
-        .toLowerCase()
-        .trim();
-
-
-      let found = false;
-
-
-      movies.forEach(function(movie) {
-
-        const titleElement =
-          movie.querySelector("h3");
-
-        const dateElement =
-          movie.querySelector(".release-date");
-
-        const genreElement =
-          movie.querySelector(".genre-badge");
-
-        const descriptionElement =
-          movie.querySelector(".movie-description");
-
-
-        const title =
-          titleElement
-          ? titleElement.innerText
-          : "";
-
-
-        const releaseDate =
-          dateElement
-          ? dateElement.innerText
-          : "";
-
-
-        const genre =
-          genreElement
-          ? genreElement.innerText
-          : "";
-
-
-        const description =
-          descriptionElement
-          ? descriptionElement.innerText
-          : "";
-
-
-        const searchableText =
-          (
-            title +
-            " " +
-            releaseDate +
-            " " +
-            genre +
-            " " +
-            description
-          ).toLowerCase();
-
-
-        if (
-          searchText === "" ||
-          searchableText.includes(searchText)
-        ) {
-
-          movie.style.display = "block";
-
-          found = true;
-
-        } else {
-
-          movie.style.display = "none";
-
-        }
-
-      });
-
-
-      if (found) {
-
-        noMovieMessage.style.display =
-          "none";
-
-      } else {
-
-        noMovieMessage.style.display =
-          "block";
-
-      }
+      movie.style.display = "none";
 
     }
 
+  });
 
-    /* CLEAR SEARCH */
 
-    function clearMovieSearch() {
+  if (found) {
+    noMovieMessage.style.display = "none";
+  } else {
+    noMovieMessage.style.display = "block";
+  }
 
-      const searchInput =
-        document.getElementById("movieSearch");
+}
 
-      if (!searchInput) return;
 
 
-      searchInput.value = "";
+function movieMessage(movieName) {
 
+  const details =
+    document.getElementById("movieDetails");
 
-      filterMovies();
 
-    }
+  if (!details) return;
 
 
-    /* CATEGORY FILTER */
+  details.innerHTML =
+    "<h2>🎬 " + movieName + "</h2>" +
+    "<p>⭐ Movie information</p>" +
+    "<p>✨ Movie details successfully loaded!</p>" +
+    '<button class="btn" onclick="closeMovieDetails()">✖ Close</button>';
 
-    function showMovies(category) {
 
-      const movies =
-        document.querySelectorAll(".movie-card");
+  details.style.display = "block";
 
-      const noMovieMessage =
-        document.getElementById("noMovieMessage");
+}
 
-      let found = false;
 
 
-      movies.forEach(function(movie) {
+function closeMovieDetails() {
 
-        const genreElement =
-          movie.querySelector(".genre-badge");
+  const details =
+    document.getElementById("movieDetails");
 
 
-        if (!genreElement) {
+  if (details) {
+    details.style.display = "none";
+  }
 
-          return;
-
-        }
-
-
-        const genre =
-          genreElement.innerText.toLowerCase();
-
-
-        if (
-          category === "all" ||
-          genre.includes(
-            category.toLowerCase()
-          )
-        ) {
-
-          movie.style.display =
-            "block";
-
-          found = true;
-
-        } else {
-
-          movie.style.display =
-            "none";
-
-        }
-
-      });
-
-
-      if (found) {
-
-        noMovieMessage.style.display =
-          "none";
-
-      } else {
-
-        noMovieMessage.style.display =
-          "block";
-
-      }
-
-    }
-
-
-    /* MOVIE DETAILS */
-
-    function movieMessage(movieName) {
-
-      const details =
-        document.getElementById("movieDetails");
-
-
-      if (!details) return;
-
-
-      details.innerHTML =
-
-        "<h2>🎬 " +
-        movieName +
-        "</h2>" +
-
-        "<p>⭐ Movie information</p>" +
-
-        "<p>✨ Movie details successfully loaded!</p>" +
-
-        '<button onclick="closeMovieDetails()">' +
-        "✖ Close" +
-        "</button>";
-
-
-      details.style.display =
-        "block";
-
-
-      details.scrollIntoView({
-        behavior: "smooth"
-      });
-
-    }
-
-
-    /* CLOSE DETAILS */
-
-    function closeMovieDetails() {
-
-      const details =
-        document.getElementById("movieDetails");
-
-
-      if (details) {
-
-        details.style.display =
-          "none";
-
-      }
-
-    }
+}
 
   </script>
+      
+
 
 </body>
 </html>
