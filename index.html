@@ -1192,40 +1192,30 @@ body.dark-mode .movie-description {
 
     function filterMovies() {
 
-      let searchText =
-        document
-          .getElementById("movieSearch")
-          .value
-          .toLowerCase();
+  let searchText = document
+    .getElementById("movieSearch")
+    .value
+    .toLowerCase()
+    .trim();
 
-      let movies =
-        document.querySelectorAll(".movie-card");
+  let movies = document.querySelectorAll(".movie-card");
+  let found = false;
 
-      let found = false;
+  movies.forEach(function(movie) {
 
-      movies.forEach(function(movie) {
+    let movieText = movie.innerText.toLowerCase();
 
-        let movieName =
-          movie
-            .querySelector("h3")
-            .innerText
-            .toLowerCase();
+    if (movieText.includes(searchText)) {
+      movie.style.display = "block";
+      found = true;
+    } else {
+      movie.style.display = "none";
+    }
 
-        if (movieName.includes(searchText)) {
+  });
 
-          movie.style.display = "block";
-          found = true;
-
-        } else {
-
-          movie.style.display = "none";
-
-        }
-
-      });
-
-      document.getElementById("noMovieMessage").style.display =
-        found ? "none" : "block";
+  document.getElementById("noMovieMessage").style.display =
+    found ? "none" : "block";
     }
 
   </script>
