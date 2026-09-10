@@ -555,29 +555,7 @@
       🔎 Search Website
     </h2>
 
-    <form
-      onsubmit="searchWebsite(event)"
-      class="search-box">
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search...">
-
-      <button
-        type="submit"
-        class="btn">
-        Search 🔍
-      </button>
-
-      <button
-        type="button"
-        class="btn"
-        onclick="clearSearch()">
-        Clear
-      </button>
-
-    </form>
+    
 
   </section>
 
@@ -716,12 +694,26 @@
 
     <!-- MOVIE SEARCH -->
 
-    <input
-      type="text"
-      id="movieSearch"
-      class="movie-search"
-      placeholder="Search movies..."
-      onkeyup="filterMovies()">
+    <form class="search-box" onsubmit="event.preventDefault(); filterMovies();">
+
+  <input
+    type="text"
+    id="movieSearch"
+    placeholder="🔎 Search movie, genre, date..."
+  >
+
+  <button type="submit">
+    Search 🔍
+  </button>
+
+  <button
+    type="button"
+    onclick="document.getElementById('movieSearch').value=''; filterMovies();"
+  >
+    Clear
+  </button>
+
+    </form>
 
 
     <!-- MOVIE FILTERS -->
@@ -1215,46 +1207,33 @@ document.addEventListener("DOMContentLoaded", function () {
      MOVIE SEARCH
      ========================= */
 
-  window.filterMovies = function () {
+  function filterMovies() {
 
-    const searchInput =
-      document.getElementById("movieSearch");
+  let searchText = document
+    .getElementById("movieSearch")
+    .value
+    .toLowerCase()
+    .trim();
 
-    const movies =
-      document.querySelectorAll(".movie-card");
+  let movies = document.querySelectorAll(".movie-card");
+  let found = false;
 
-    const noMovieMessage =
-      document.getElementById("noMovieMessage");
+  movies.forEach(function(movie) {
 
-    if (!searchInput) return;
+    let movieText = movie.innerText.toLowerCase();
 
-    const searchText =
-      searchInput.value.toLowerCase().trim();
-
-    let found = false;
-
-    movies.forEach(function (movie) {
-
-      const movieText =
-        movie.innerText.toLowerCase();
-
-      if (movieText.includes(searchText)) {
-
-        movie.style.display = "";
-        found = true;
-
-      } else {
-
-        movie.style.display = "none";
-
-      }
-
-    });
-
-    if (noMovieMessage) {
-      noMovieMessage.style.display =
-        found ? "none" : "block";
+    if (movieText.includes(searchText)) {
+      movie.style.display = "block";
+      found = true;
+    } else {
+      movie.style.display = "none";
     }
+
+  });
+
+  document.getElementById("noMovieMessage").style.display =
+    found ? "none" : "block";
+  }
 
   };
 
