@@ -1064,161 +1064,274 @@
   <!-- JAVASCRIPT -->
 
   <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-    /* WEBSITE SEARCH */
+  /* =========================
+     DARK MODE
+     ========================= */
 
-    function searchWebsite(event) {
+  const darkButton = document.querySelector(".dark-btn");
 
-      event.preventDefault();
+  function updateDarkButton() {
+    if (!darkButton) return;
 
-      let text =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .replace(/\s+/g, "");
+    if (document.body.classList.contains("dark-mode")) {
+      darkButton.innerText = "☀️ Light Mode";
+    } else {
+      darkButton.innerText = "🌙 Dark Mode";
+    }
+  }
 
-      if (text === "") {
+  window.toggleDarkMode = function () {
+    document.body.classList.toggle("dark-mode");
 
-        alert("Please enter something to search!");
-
-        return;
-
-      }
-
-      if ("calculator".includes(text)) {
-
-        window.location.href = "calculator.html";
-
-      }
-
-      else if ("about".includes(text)) {
-
-        window.location.href = "about.html";
-
-      }
-
-      else if ("contact".includes(text)) {
-
-        window.location.href = "contact.html";
-
-      }
-
-      else if ("home".includes(text)) {
-
-        window.location.href = "index.html";
-
-      }
-
-      else {
-
-        alert("Page not found!");
-
-      }
-
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("darkMode", "on");
+    } else {
+      localStorage.setItem("darkMode", "off");
     }
 
+    updateDarkButton();
+  };
 
-    function clearSearch() {
+  if (localStorage.getItem("darkMode") === "on") {
+    document.body.classList.add("dark-mode");
+  }
 
-      document
-        .getElementById("searchInput")
-        .value = "";
+  updateDarkButton();
 
+
+  /* =========================
+     WEBSITE SEARCH
+     ========================= */
+
+  window.searchWebsite = function (event) {
+    event.preventDefault();
+
+    const input = document.getElementById("searchInput");
+
+    if (!input) return;
+
+    const text = input.value.toLowerCase().trim();
+
+    if (text === "") {
+      alert("Please enter something to search!");
+      return;
     }
 
+    if (text === "calculator") {
+      window.location.href = "calculator.html";
+    }
 
-    /* DARK MODE */
+    else if (text === "about") {
+      window.location.href = "about.html";
+    }
 
-    function toggleDarkMode() {
+    else if (text === "contact") {
+      window.location.href = "contact.html";
+    }
 
-      document.body.classList.toggle("dark-mode");
+    else if (
+      text === "home" ||
+      text === "movie" ||
+      text === "movies" ||
+      text === "filmy"
+    ) {
+      window.location.href = "index.html";
+    }
 
-      let button =
-        document.querySelector(".dark-btn");
+    else {
+      alert("Page not found!");
+    }
+  };
+
+
+  window.clearSearch = function () {
+    const input = document.getElementById("searchInput");
+
+    if (input) {
+      input.value = "";
+      input.focus();
+    }
+  };
+
+
+  /* =========================
+     MOBILE MENU
+     ========================= */
+
+  window.toggleMenu = function () {
+    const nav = document.querySelector("nav");
+
+    if (nav) {
+      nav.classList.toggle("menu-open");
+    }
+  };
+
+
+  /* =========================
+     MOVIE FILTER
+     ========================= */
+
+  window.showMovies = function (category) {
+
+    const movies = document.querySelectorAll(".movie-card");
+    const noMovieMessage =
+      document.getElementById("noMovieMessage");
+
+    let found = false;
+
+    movies.forEach(function (movie) {
+
+      const genreElement =
+        movie.querySelector(".genre-badge");
+
+      if (!genreElement) return;
+
+      const genre =
+        genreElement.innerText.toLowerCase();
 
       if (
-        document.body.classList.contains("dark-mode")
+        category === "all" ||
+        genre.includes(category.toLowerCase())
       ) {
+        movie.style.display = "";
+        found = true;
+      } else {
+        movie.style.display = "none";
+      }
 
-        localStorage.setItem(
-          "darkMode",
-          "on"
-        );
+    });
 
-        button.innerText =
-          "☀️ Light Mode";
+    if (noMovieMessage) {
+      noMovieMessage.style.display =
+        found ? "none" : "block";
+    }
+
+  };
+
+
+  /* =========================
+     MOVIE SEARCH
+     ========================= */
+
+  window.filterMovies = function () {
+
+    const searchInput =
+      document.getElementById("movieSearch");
+
+    const movies =
+      document.querySelectorAll(".movie-card");
+
+    const noMovieMessage =
+      document.getElementById("noMovieMessage");
+
+    if (!searchInput) return;
+
+    const searchText =
+      searchInput.value.toLowerCase().trim();
+
+    let found = false;
+
+    movies.forEach(function (movie) {
+
+      const movieText =
+        movie.innerText.toLowerCase();
+
+      if (movieText.includes(searchText)) {
+
+        movie.style.display = "";
+        found = true;
+
+      } else {
+
+        movie.style.display = "none";
 
       }
 
-      else {
+    });
 
-        localStorage.setItem(
-          "darkMode",
-          "off"
-        );
-
-        button.innerText =
-          "🌙 Dark Mode";
-
-      }
-
+    if (noMovieMessage) {
+      noMovieMessage.style.display =
+        found ? "none" : "block";
     }
 
+  };
 
-    /* KEEP DARK MODE AFTER REFRESH */
 
-    if (
-      localStorage.getItem("darkMode") === "on"
-    ) {
+  /* =========================
+     MOVIE DETAILS
+     ========================= */
 
-      document.body.classList.add("dark-mode");
+  window.movieMessage = function (movieName) {
 
-      document
-        .querySelector(".dark-btn")
-        .innerText =
-        "☀️ Light Mode";
+    const details =
+      document.getElementById("movieDetails");
 
+    if (!details) return;
+
+    let rating = "8.0 / 10";
+    let genre = "Action • Adventure";
+
+    if (movieName === "Movie Two") {
+      rating = "8.5 / 10";
+      genre = "Comedy";
     }
 
-
-    /* MOBILE MENU */
-
-    function toggleMenu() {
-
-      document
-        .querySelector("nav")
-        .classList
-        .toggle("menu-open");
-
+    if (movieName === "Movie Three") {
+      rating = "9.0 / 10";
+      genre = "Drama";
     }
 
+    details.innerHTML = `
+      <h2>🎬 ${movieName}</h2>
 
-    /* MOVIE FILTER */
+      <p>⭐ Rating: ${rating}</p>
 
-    function showMovies(category) {
+      <p>🎭 Genre: ${genre}</p>
 
-      let movies =
-        document.querySelectorAll(".movie-card");
+      <p>
+        ✨ Movie details successfully loaded!
+      </p>
 
-      let found = false;
+      <button
+        onclick="closeMovieDetails()">
+        ✖ Close
+      </button>
+    `;
 
-      movies.forEach(function(movie) {
+    details.style.display = "block";
 
-        let genre =
-          movie
-          .querySelector(".genre-badge")
-          .innerText
-          .toLowerCase();
+    details.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
 
-        if (
-          category === "all" ||
-          genre.includes(category)
-        ) {
+  };
 
-          movie.style.display = "block";
 
-          found = true;
+  window.closeMovieDetails = function () {
 
-        }
+    const details =
+      document.getElementById("movieDetails");
+
+    if (details) {
+      details.style.display = "none";
+    }
+
+  };
+
+
+  /* =========================
+     INITIAL MOVIE STATE
+     ========================= */
+
+  window.showMovies("all");
+
+});
+</script>
+
+</body>
+</html>
+
         
