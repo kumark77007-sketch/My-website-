@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
       font-family: Arial, sans-serif;
       background: #f5f5f5;
       color: #222;
+      transition: 0.3s;
     }
 
     header {
@@ -31,7 +33,7 @@
       background: white;
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
     }
 
     label {
@@ -41,13 +43,15 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
       box-sizing: border-box;
       padding: 12px;
       margin-top: 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 16px;
     }
 
     textarea {
@@ -63,68 +67,195 @@
       background: #222;
       color: white;
       cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      opacity: 0.85;
     }
 
     #message {
       margin-top: 15px;
       font-weight: bold;
     }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #121212;
+      color: white;
+    }
+
+    body.dark-mode .settings-box {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea,
+    body.dark-mode select {
+      background: #333;
+      color: white;
+      border-color: #555;
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>⚙️ Website Settings</h1>
-</header>
+  <header>
+    <h1>⚙️ Website Settings</h1>
+  </header>
 
-<div class="container">
+  <div class="container">
 
-  <div class="settings-box">
+    <div class="settings-box">
 
-    <input type="text" id="websiteName" value="@K Filmy Movies">
+      <label for="websiteName">
+        🌐 Website Name
+      </label>
 
-<textarea id="websiteDescription">Search and explore movies on @K Filmy Movies.</textarea>
+      <input
+        type="text"
+        id="websiteName"
+        placeholder="Enter website name"
+      >
 
-    <button onclick="saveSettings()">
-      💾 Save Settings
-    </button>
 
-    <div id="message"></div>
+      <label for="websiteDescription">
+        📝 Website Description
+      </label>
+
+      <textarea
+        id="websiteDescription"
+        placeholder="Enter website description"
+      ></textarea>
+
+
+      <label for="darkMode">
+        🌙 Website Theme
+      </label>
+
+      <select id="darkMode">
+        <option value="off">☀️ Light Mode</option>
+        <option value="on">🌙 Dark Mode</option>
+      </select>
+
+
+      <button onclick="saveSettings()">
+        💾 Save Settings
+      </button>
+
+      <div id="message"></div>
+
+    </div>
 
   </div>
 
-</div>
 
-<script>
+  <script>
 
-function saveSettings() {
+    function saveSettings() {
 
-  const name =
-    document.getElementById("websiteName").value.trim();
+      const name =
+        document.getElementById("websiteName").value.trim();
 
-  const description =
-    document.getElementById("websiteDescription").value.trim();
+      const description =
+        document.getElementById("websiteDescription").value.trim();
 
-  localStorage.setItem("websiteName", name);
-  localStorage.setItem("websiteDescription", description);
+      const darkMode =
+        document.getElementById("darkMode").value;
 
-  document.getElementById("message").innerText =
-    "✅ Settings saved successfully!";
-}
 
-function loadSettings() {
+      /* Save Website Name */
+      localStorage.setItem(
+        "websiteName",
+        name
+      );
 
-  document.getElementById("websiteName").value =
-    localStorage.getItem("websiteName") || "";
 
-  document.getElementById("websiteDescription").value =
-    localStorage.getItem("websiteDescription") || "";
-}
+      /* Save Website Description */
+      localStorage.setItem(
+        "websiteDescription",
+        description
+      );
 
-loadSettings();
 
-</script>
+      /* Save Dark Mode */
+      localStorage.setItem(
+        "darkMode",
+        darkMode
+      );
+
+
+      /* Apply Dark Mode */
+      if (darkMode === "on") {
+
+        document.body.classList.add("dark-mode");
+
+      } else {
+
+        document.body.classList.remove("dark-mode");
+
+      }
+
+
+      document.getElementById("message").innerText =
+        "✅ Settings saved successfully!";
+
+    }
+
+
+    function loadSettings() {
+
+      const savedName =
+        localStorage.getItem("websiteName");
+
+      const savedDescription =
+        localStorage.getItem("websiteDescription");
+
+      const savedDarkMode =
+        localStorage.getItem("darkMode");
+
+
+      if (savedName) {
+
+        document.getElementById("websiteName").value =
+          savedName;
+
+      }
+
+
+      if (savedDescription) {
+
+        document.getElementById("websiteDescription").value =
+          savedDescription;
+
+      }
+
+
+      if (savedDarkMode) {
+
+        document.getElementById("darkMode").value =
+          savedDarkMode;
+
+      }
+
+
+      /* Apply saved Dark Mode */
+
+      if (savedDarkMode === "on") {
+
+        document.body.classList.add("dark-mode");
+
+      }
+
+    }
+
+
+    loadSettings();
+
+  </script>
 
 </body>
+
 </html>
