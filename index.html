@@ -923,6 +923,34 @@ function movieMessage(movieName) {
   </script>
       
 
+<script>
+function applyWebsiteSettings() {
 
+  const savedName =
+    localStorage.getItem("websiteName");
+
+  const savedDescription =
+    localStorage.getItem("websiteDescription");
+
+  if (savedName) {
+    const titleElement = document.querySelector("header h1");
+
+    if (titleElement) {
+      titleElement.innerText = "🎬 " + savedName;
+    }
+  }
+
+  if (savedDescription) {
+    const descriptionElement =
+      document.querySelector(".hero p");
+
+    if (descriptionElement) {
+      descriptionElement.innerText = savedDescription;
+    }
+  }
+}
+
+applyWebsiteSettings();
+</script>
 </body>
 </html>
