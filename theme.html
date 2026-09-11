@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Theme - My Movie Website</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      transition: 0.3s;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .theme-card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 18px;
+      margin: 8px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #222;
+      color: white;
+    }
+
+    .dark {
+      background: #121212;
+      color: white;
+    }
+
+    .dark .theme-card {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    .blue {
+      background: #eaf3ff;
+      color: #123;
+    }
+
+    .blue .theme-card {
+      background: white;
+    }
+
+    .green {
+      background: #eafbea;
+      color: #132;
+    }
+
+    .green .theme-card {
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🖌️ Theme Settings</h1>
+</header>
+
+<div class="container">
+
+  <div class="theme-card">
+    <h2>Choose Website Theme</h2>
+
+    <button onclick="setTheme('light')">
+      ☀️ Light
+    </button>
+
+    <button onclick="setTheme('dark')">
+      🌙 Dark
+    </button>
+
+    <button onclick="setTheme('blue')">
+      🔵 Blue
+    </button>
+
+    <button onclick="setTheme('green')">
+      🟢 Green
+    </button>
+  </div>
+
+</div>
+
+<script>
+
+function setTheme(theme) {
+
+  document.body.className = "";
+
+  if (theme === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  if (theme === "blue") {
+    document.body.classList.add("blue");
+  }
+
+  if (theme === "green") {
+    document.body.classList.add("green");
+  }
+
+  localStorage.setItem("websiteTheme", theme);
+}
+
+const savedTheme =
+  localStorage.getItem("websiteTheme");
+
+if (savedTheme) {
+  setTheme(savedTheme);
+}
+
+</script>
+
+</body>
+</html>
