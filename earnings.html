@@ -3,17 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Earnings - My Movie Website</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+    }
+
+    .amount {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .status {
+      color: #b00020;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>💰 Earnings</h1>
+<header>
+  <h1>💰 Earnings Dashboard</h1>
+</header>
 
-  <p>Total Earnings: ₹0</p>
-  <p>This Month: ₹0</p>
-  <p>Today: ₹0</p>
-  <p>Payment Status: Not Connected</p>
+<div class="container">
+
+  <div class="cards">
+
+    <div class="card">
+      <h2>💵 Total Earnings</h2>
+      <div class="amount">₹0</div>
+    </div>
+
+    <div class="card">
+      <h2>📅 This Month</h2>
+      <div class="amount">₹0</div>
+    </div>
+
+    <div class="card">
+      <h2>📈 Today</h2>
+      <div class="amount">₹0</div>
+    </div>
+
+    <div class="card">
+      <h2>💳 Payment</h2>
+      <p class="status">Not Connected</p>
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 </html>
