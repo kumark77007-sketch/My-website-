@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts - My Movie Website</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    textarea {
+      height: 120px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .post {
+      border-top: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .delete {
+      background: #b00020;
+    }
+
+    .edit {
+      background: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>📝 Posts</h1>
+
+  <div class="box">
+    <h2>Add New Post</h2>
+
+    <input type="text" id="postTitle" placeholder="Post title">
+
+    <textarea id="postContent" placeholder="Write your post..."></textarea>
+
+    <button onclick="addPost()">➕ Add Post</button>
+  </div>
+
+  <div class="box">
+    <h2>My Posts</h2>
+
+    <div id="postsList"></div>
+  </div>
+
+</div>
+
+<script>
+
+let posts = JSON.parse(localStorage.getItem("myPosts")) || [];
+
+function savePosts() {
+  localStorage.setItem("myPosts", JSON.stringify(posts));
+}
+
+function displayPosts() {
+
+  const list = document.getElementById("postsList");
+
+  if (posts.length === 0) {
+    list.innerHTML = "<p>No posts yet.</p>";
+    return;
+  }
+
+  list.innerHTML = "";
+
+  posts.forEach(function(post, index) {
+
+    list.innerHTML += `
+      <div class="post">
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+
+        <button class="edit" onclick="editPost(${index})">
+          ✏️ Edit
+        </button>
+
+        <button class="delete" onclick="deletePost(${index})">
+          🗑️ Delete
+        </button>
+      </div>
+    `;
+
+  });
+}
+
+function addPost() {
+
+  const title = document.getElementById("postTitle").value.trim();
+  const content = document.getElementById("postContent").value.trim();
+
+  if (title === "" || content === "") {
+    alert("Please enter title and post content.");
+    return;
+  }
+
+  posts.push({
+    title: title,
+    content: content
+  });
+
+  savePosts();
+
+  document.getElementById("postTitle").value = "";
+  document.getElementById("postContent").value = "";
+
+  displayPosts();
+}
+
+function deletePost(index) {
+
+  posts.splice(index, 1);
+
+  savePosts();
+
+  displayPosts();
+}
+
+function editPost(index) {
+
+  const newTitle = prompt("Edit title:", posts[index].title);
+
+  if (newTitle === null) return;
+
+  const newContent = prompt("Edit post:", posts[index].content);
+
+  if (newContent === null) return;
+
+  posts[index].title = newTitle;
+  posts[index].content = newContent;
+
+  savePosts();
+
+  displayPosts();
+}
+
+displayPosts();
+
+</script>
+
+</body>
+</html>
