@@ -39,7 +39,7 @@
     label {
       display: block;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 18px;
     }
 
     input,
@@ -55,7 +55,7 @@
     }
 
     textarea {
-      height: 100px;
+      height: 120px;
       resize: vertical;
     }
 
@@ -67,7 +67,7 @@
       background: #222;
       color: white;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     button:hover {
@@ -93,7 +93,7 @@
     body.dark-mode input,
     body.dark-mode textarea,
     body.dark-mode select {
-      background: #333;
+      background: #2b2b2b;
       color: white;
       border-color: #555;
     }
@@ -110,6 +110,7 @@
 
     <div class="settings-box">
 
+      <!-- Website Name -->
       <label for="websiteName">
         🌐 Website Name
       </label>
@@ -121,6 +122,7 @@
       >
 
 
+      <!-- Website Description -->
       <label for="websiteDescription">
         📝 Website Description
       </label>
@@ -131,16 +133,18 @@
       ></textarea>
 
 
-      <label for="darkMode">
-        🌙 Website Theme
+      <!-- Theme -->
+      <label for="websiteTheme">
+        🎨 Website Theme
       </label>
 
-      <select id="darkMode">
-        <option value="off">☀️ Light Mode</option>
-        <option value="on">🌙 Dark Mode</option>
+      <select id="websiteTheme">
+        <option value="light">☀️ Light</option>
+        <option value="dark">🌙 Dark</option>
       </select>
 
 
+      <!-- Save Button -->
       <button onclick="saveSettings()">
         💾 Save Settings
       </button>
@@ -154,6 +158,7 @@
 
   <script>
 
+    /* Save Settings */
     function saveSettings() {
 
       const name =
@@ -162,33 +167,64 @@
       const description =
         document.getElementById("websiteDescription").value.trim();
 
-      const darkMode =
-        document.getElementById("darkMode").value;
+      const theme =
+        document.getElementById("websiteTheme").value;
 
 
-      /* Save Website Name */
-      localStorage.setItem(
-        "websiteName",
-        name
-      );
+      /* Save to browser */
+      localStorage.setItem("websiteName", name);
 
-
-      /* Save Website Description */
       localStorage.setItem(
         "websiteDescription",
         description
       );
 
-
-      /* Save Dark Mode */
       localStorage.setItem(
-        "darkMode",
-        darkMode
+        "websiteTheme",
+        theme
       );
 
+      /* Also save dark mode setting */
+      if (theme === "dark") {
+        localStorage.setItem("darkMode", "on");
+      } else {
+        localStorage.setItem("darkMode", "off");
+      }
 
-      /* Apply Dark Mode */
-      if (darkMode === "on") {
+
+      /* Apply theme immediately */
+      applyTheme();
+
+
+      /* Success message */
+      document.getElementById("message").innerText =
+        "✅ Settings saved successfully!";
+
+    }
+
+
+    /* Load saved settings */
+    function loadSettings() {
+
+      document.getElementById("websiteName").value =
+        localStorage.getItem("websiteName") || "";
+
+      document.getElementById("websiteDescription").value =
+        localStorage.getItem("websiteDescription") || "";
+
+      document.getElementById("websiteTheme").value =
+        localStorage.getItem("websiteTheme") || "light";
+
+    }
+
+
+    /* Apply Theme */
+    function applyTheme() {
+
+      const theme =
+        localStorage.getItem("websiteTheme") || "light";
+
+      if (theme === "dark") {
 
         document.body.classList.add("dark-mode");
 
@@ -198,61 +234,12 @@
 
       }
 
-
-      document.getElementById("message").innerText =
-        "✅ Settings saved successfully!";
-
     }
 
 
-    function loadSettings() {
-
-      const savedName =
-        localStorage.getItem("websiteName");
-
-      const savedDescription =
-        localStorage.getItem("websiteDescription");
-
-      const savedDarkMode =
-        localStorage.getItem("darkMode");
-
-
-      if (savedName) {
-
-        document.getElementById("websiteName").value =
-          savedName;
-
-      }
-
-
-      if (savedDescription) {
-
-        document.getElementById("websiteDescription").value =
-          savedDescription;
-
-      }
-
-
-      if (savedDarkMode) {
-
-        document.getElementById("darkMode").value =
-          savedDarkMode;
-
-      }
-
-
-      /* Apply saved Dark Mode */
-
-      if (savedDarkMode === "on") {
-
-        document.body.classList.add("dark-mode");
-
-      }
-
-    }
-
-
+    /* Start */
     loadSettings();
+    applyTheme();
 
   </script>
 
