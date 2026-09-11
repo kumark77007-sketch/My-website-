@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stats - My Movie Website</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .stats-box {
+      background: white;
+      padding: 25px;
+      margin-top: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .stat {
+      font-size: 22px;
+      margin: 20px 0;
+    }
+
+    .number {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>📊 Website Stats</h1>
+
+  <div class="stats-box">
+
+    <div class="stat">
+      👁️ Page Views
+      <div class="number" id="pageViews">0</div>
+    </div>
+
+    <div class="stat">
+      🎬 Movies
+      <div class="number">3</div>
+    </div>
+
+    <button onclick="resetStats()">Reset Stats</button>
+
+  </div>
+
+</div>
+
+<script>
+
+let views = Number(localStorage.getItem("websiteViews")) || 0;
+
+views++;
+
+localStorage.setItem("websiteViews", views);
+
+document.getElementById("pageViews").innerText = views;
+
+function resetStats() {
+  localStorage.setItem("websiteViews", 0);
+  document.getElementById("pageViews").innerText = 0;
+}
+
+</script>
+
+</body>
+</html>
