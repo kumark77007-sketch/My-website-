@@ -1,97 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stats - My Movie Website</title>
+
+  <title>Stats - @K Filmy Movies</title>
 
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
-      margin: 0;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
       padding: 20px;
+      text-align: center;
     }
 
     .container {
-      max-width: 700px;
-      margin: auto;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
     }
 
-    h1 {
-      text-align: center;
+    .stats {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
 
-    .stats-box {
+    .card {
       background: white;
       padding: 25px;
-      margin-top: 25px;
       border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
       text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     }
 
-    .stat {
-      font-size: 22px;
-      margin: 20px 0;
+    .icon {
+      font-size: 35px;
     }
 
     .number {
-      font-size: 40px;
+      font-size: 32px;
       font-weight: bold;
-    }
-
-    button {
-      padding: 12px 18px;
-      border: none;
-      border-radius: 6px;
-      background: #222;
-      color: white;
-      cursor: pointer;
+      margin-top: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <header>
+    <h1>📊 Website Stats</h1>
+  </header>
 
-  <h1>📊 Website Stats</h1>
+  <div class="container">
 
-  <div class="stats-box">
+    <div class="stats">
 
-    <div class="stat">
-      👁️ Page Views
-      <div class="number" id="pageViews">0</div>
+      <div class="card">
+        <div class="icon">👀</div>
+        <h2>Total Visits</h2>
+        <div class="number" id="totalVisits">0</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h2>Total Movies</h2>
+        <div class="number">3</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h2>Total Comments</h2>
+        <div class="number" id="totalComments">0</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">📝</div>
+        <h2>Total Posts</h2>
+        <div class="number" id="totalPosts">0</div>
+      </div>
+
     </div>
-
-    <div class="stat">
-      🎬 Movies
-      <div class="number">3</div>
-    </div>
-
-    <button onclick="resetStats()">Reset Stats</button>
 
   </div>
 
-</div>
+  <script>
 
-<script>
+    /* Count Stats Page Visits */
 
-let views = Number(localStorage.getItem("websiteViews")) || 0;
+    let visits =
+      Number(localStorage.getItem("websiteVisits")) || 0;
 
-views++;
+    visits++;
 
-localStorage.setItem("websiteViews", views);
+    localStorage.setItem(
+      "websiteVisits",
+      visits
+    );
 
-document.getElementById("pageViews").innerText = views;
+    document.getElementById("totalVisits").innerText =
+      visits;
 
-function resetStats() {
-  localStorage.setItem("websiteViews", 0);
-  document.getElementById("pageViews").innerText = 0;
-}
 
-</script>
+    /* Count Comments */
+
+    const comments =
+      JSON.parse(
+        localStorage.getItem("movieComments") || "[]"
+      );
+
+    document.getElementById("totalComments").innerText =
+      comments.length;
+
+
+    /* Count Posts */
+
+    const posts =
+      JSON.parse(
+        localStorage.getItem("myPosts") || "[]"
+      );
+
+    document.getElementById("totalPosts").innerText =
+      posts.length;
+
+  </script>
 
 </body>
+
 </html>
