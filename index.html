@@ -359,7 +359,7 @@
 
   <header>
 
-    <h1>🎬 @K Filmy movies</h1>
+    <h1 id="siteName">🎬 @K Filmy Movies</h1>
 
     <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
 
@@ -393,8 +393,8 @@
 
     <h2>🎬 Welcome to @K Filmy movies</h2>
 
-    <p>
-      Search movies by name, genre, release date or description.
+    <p id="siteDescription">
+  Search movies by name, genre, release date or description.
     </p>
 
   </div>
@@ -947,6 +947,28 @@ function applyWebsiteSettings() {
     if (descriptionElement) {
       descriptionElement.innerText = savedDescription;
     }
+  }
+}
+
+applyWebsiteSettings();
+function applyWebsiteSettings() {
+
+  const savedName = localStorage.getItem("websiteName");
+  const savedDescription =
+    localStorage.getItem("websiteDescription");
+
+  const nameElement =
+    document.getElementById("siteName");
+
+  const descriptionElement =
+    document.getElementById("siteDescription");
+
+  if (savedName && nameElement) {
+    nameElement.innerText = "🎬 " + savedName;
+  }
+
+  if (savedDescription && descriptionElement) {
+    descriptionElement.innerText = savedDescription;
   }
 }
 
