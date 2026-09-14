@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - @K Filmy Movies</title>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #111;
+      color: white;
+      cursor: pointer;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h1>🔐 Admin Login</h1>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Admin Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button onclick="login()">
+      🔑 Login
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAyUdcXAXj6Pr7fnbKksGnwKDo2nlG5gAM",
+      authDomain: "k-filmy-movies.firebaseapp.com",
+      projectId: "k-filmy-movies",
+      storageBucket: "k-filmy-movies.firebasestorage.app",
+      messagingSenderId: "638265445029",
+      appId: "1:638265445029:web:d6138efd0e12de4f6d5b4c",
+      measurementId: "G-9ZPFG9T558"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    window.login = function() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("message");
+
+
+      if (!email || !password) {
+        message.innerText =
+          "⚠️ Email aur password enter karo.";
+        return;
+      }
+
+
+      signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      .then(() => {
+
+        message.innerText =
+          "✅ Login successful!";
+
+        setTimeout(() => {
+          window.location.href =
+            "admin.html";
+        }, 800);
+
+      })
+      .catch(() => {
+
+        message.innerText =
+          "❌ Email ya password galat hai.";
+
+      });
+
+    };
+
+  </script>
+
+</body>
+</html>
