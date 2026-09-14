@@ -68,6 +68,32 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAyUdcXAXj6Pr7fnbKksGnwKDo2nlG5gAM",
+    authDomain: "k-filmy-movies.firebaseapp.com",
+    projectId: "k-filmy-movies",
+    storageBucket: "k-filmy-movies.firebasestorage.app",
+    messagingSenderId: "638265445029",
+    appId: "1:638265445029:web:d6138efd0e12de4f6d5b4c",
+    measurementId: "G-9ZPFG9T558"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
   </style>
 </head>
 
