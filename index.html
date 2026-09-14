@@ -1004,17 +1004,16 @@ function applyWebsiteSettings() {
 }
 
 applyWebsiteSettings();
-  // Import the functions you need from the SDKs you need
-
-</script>
   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
   import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
-    
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    getAuth,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
   const firebaseConfig = {
     apiKey: "AIzaSyAyUdcXAXj6Pr7fnbKksGnwKDo2nlG5gAM",
     authDomain: "k-filmy-movies.firebaseapp.com",
@@ -1025,47 +1024,73 @@ applyWebsiteSettings();
     measurementId: "G-9ZPFG9T558"
   };
 
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  onAuthStateChanged(auth, (user) =>
-    const logoutBtn = document.getElementById("logoutBtn");
 
-onAuthStateChanged(auth, (user) => {
-  if (logoutBtn) {
-    logoutBtn.style.display = user ? "inline-block" : "none";
-  }
-});
-    document.getElementById("logoutBtn")?.addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "index.html";
-});
+  onAuthStateChanged(auth, (user) => {
 
-logoutBtn?.addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "index.html";
-});
-    {
-  const adminLinks = document.querySelectorAll(
-    'nav a[href="posts.html"],' +
-    'nav a[href="stats.html"],' +
-    'nav a[href="comments.html"],' +
-    'nav a[href="earnings.html"],' +
-    'nav a[href="pages.html"],' +
-    'nav a[href="layout.html"],' +
-    'nav a[href="theme.html"],' +
-    'nav a[href="settings.html"],' +
-    'nav a[href="privacy.html"],' +
-    'nav a[href="terms.html"],' +
-    'nav a[href="reading-list.html"]'
-  );
+    const logoutBtn =
+      document.getElementById("logoutBtn");
 
-  adminLinks.forEach(link => {
-    link.style.display = user ? "" : "none";
+    const loginLink =
+      document.getElementById("loginLink");
+
+
+    // Logout button
+    if (logoutBtn) {
+      logoutBtn.style.display =
+        user ? "inline-block" : "none";
+    }
+
+
+    // Login link
+    if (loginLink) {
+      loginLink.style.display =
+        user ? "none" : "inline-block";
+    }
+
+
+    // Admin menu
+    const adminLinks = document.querySelectorAll(
+      'nav a[href="posts.html"],' +
+      'nav a[href="stats.html"],' +
+      'nav a[href="comments.html"],' +
+      'nav a[href="earnings.html"],' +
+      'nav a[href="pages.html"],' +
+      'nav a[href="layout.html"],' +
+      'nav a[href="theme.html"],' +
+      'nav a[href="settings.html"],' +
+      'nav a[href="privacy.html"],' +
+      'nav a[href="terms.html"],' +
+      'nav a[href="reading-list.html"]'
+    );
+
+
+    adminLinks.forEach((link) => {
+      link.style.display =
+        user ? "" : "none";
+    });
+
   });
 
-});
-  });
+
+  // Logout
+  document
+    .getElementById("logoutBtn")
+    ?.addEventListener("click", async () => {
+
+      try {
+        await signOut(auth);
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+
+    });
+
+</script>
  
   </script>
 </body>
