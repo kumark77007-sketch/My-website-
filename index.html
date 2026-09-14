@@ -1023,14 +1023,27 @@ applyWebsiteSettings();
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  onAuthStateChanged(auth, (user) => {
-    const adminLinks = document.querySelectorAll(
-      'nav a[href="posts.html"], nav a[href="stats.html"], nav a[href="comments.html"], nav a[href="earnings.html"], nav a[href="pages.html"], nav a[href="layout.html"], nav a[href="theme.html"], nav a[href="settings.html"]'
-    );
+  onAuthStateChanged(auth, (user) =>
+    {
+  const adminLinks = document.querySelectorAll(
+    'nav a[href="posts.html"],' +
+    'nav a[href="stats.html"],' +
+    'nav a[href="comments.html"],' +
+    'nav a[href="earnings.html"],' +
+    'nav a[href="pages.html"],' +
+    'nav a[href="layout.html"],' +
+    'nav a[href="theme.html"],' +
+    'nav a[href="settings.html"],' +
+    'nav a[href="privacy.html"],' +
+    'nav a[href="terms.html"],' +
+    'nav a[href="reading-list.html"]'
+  );
 
-    adminLinks.forEach(link => {
-      link.style.display = user ? "" : "none";
-    });
+  adminLinks.forEach(link => {
+    link.style.display = user ? "" : "none";
+  });
+
+});
   });
  
   </script>
