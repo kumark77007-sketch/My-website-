@@ -401,6 +401,7 @@ header nav.menu-open {
     <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
 <a href="login.html" id="loginLink">🔐 Admin Login</a>
     <nav>
+      <button id="logoutBtn" style="display:none;">🚪 Logout</button>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -1008,8 +1009,12 @@ applyWebsiteSettings();
 </script>
   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
+  import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+    
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
   const firebaseConfig = {
     apiKey: "AIzaSyAyUdcXAXj6Pr7fnbKksGnwKDo2nlG5gAM",
     authDomain: "k-filmy-movies.firebaseapp.com",
@@ -1024,6 +1029,18 @@ applyWebsiteSettings();
   const auth = getAuth(app);
 
   onAuthStateChanged(auth, (user) =>
+    const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth, (user) => {
+  if (logoutBtn) {
+    logoutBtn.style.display = user ? "inline-block" : "none";
+  }
+});
+
+logoutBtn?.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "index.html";
+});
     {
   const adminLinks = document.querySelectorAll(
     'nav a[href="posts.html"],' +
