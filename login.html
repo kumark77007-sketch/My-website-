@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+</head>
 
+<body>
+
+  <h2>🔐 Admin Login</h2>
+
+  <input type="email" id="email" placeholder="Admin Email">
+  <br><br>
+
+  <input type="password" id="password" placeholder="Password">
+  <br><br>
+
+  <button id="loginBtn">Login</button>
+
+  <p id="message"></p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "APNA-SAME-API-KEY",
+      authDomain: "k-filmy-movies.firebaseapp.com",
+      projectId: "k-filmy-movies",
+      storageBucket: "k-filmy-movies.firebasestorage.app",
+      messagingSenderId: "638265445029",
+      appId: "1:638265445029:web:d6138efd0e12de4f6d5b4c",
+      measurementId: "G-9ZPFG9T558"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginBtn").onclick = async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        message.innerText = "✅ Login successful!";
+        window.location.href = "index.html";
+      } catch (error) {
+        message.innerText = "❌ Login failed. Email or password गलत है.";
+      }
+    };
+  </script>
+
+</body>
+</html>
