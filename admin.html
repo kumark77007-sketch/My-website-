@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard - @K Filmy Movies</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .admin-card {
+      display: block;
+      background: white;
+      color: #222;
+      text-decoration: none;
+      padding: 25px 15px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      transition: 0.2s;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .icon {
+      font-size: 35px;
+    }
+
+    .admin-card h2 {
+      margin: 10px 0 0;
+      font-size: 18px;
+    }
+
+    .logout {
+      display: block;
+      width: 200px;
+      margin: 30px auto 0;
+      padding: 12px;
+      border: none;
+      border-radius: 7px;
+      background: #b00020;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🔐 Admin Dashboard</h1>
+    <p>@K Filmy Movies</p>
+  </header>
+
+  <div class="container">
+
+    <div class="admin-grid">
+
+      <a class="admin-card" href="posts.html">
+        <div class="icon">📝</div>
+        <h2>Posts</h2>
+      </a>
+
+      <a class="admin-card" href="stats.html">
+        <div class="icon">📊</div>
+        <h2>Stats</h2>
+      </a>
+
+      <a class="admin-card" href="comments.html">
+        <div class="icon">💬</div>
+        <h2>Comments</h2>
+      </a>
+
+      <a class="admin-card" href="earnings.html">
+        <div class="icon">💰</div>
+        <h2>Earnings</h2>
+      </a>
+
+      <a class="admin-card" href="pages.html">
+        <div class="icon">📄</div>
+        <h2>Pages</h2>
+      </a>
+
+      <a class="admin-card" href="layout.html">
+        <div class="icon">🎨</div>
+        <h2>Layout</h2>
+      </a>
+
+      <a class="admin-card" href="theme.html">
+        <div class="icon">🖌️</div>
+        <h2>Theme</h2>
+      </a>
+
+      <a class="admin-card" href="settings.html">
+        <div class="icon">⚙️</div>
+        <h2>Settings</h2>
+      </a>
+
+      <a class="admin-card" href="reading-list.html">
+        <div class="icon">📚</div>
+        <h2>Reading List</h2>
+      </a>
+
+    </div>
+
+    <button class="logout" onclick="logout()">
+      🚪 Logout
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAyUdcXAXj6Pr7fnbKksGnwKDo2nlG5gAM",
+      authDomain: "k-filmy-movies.firebaseapp.com",
+      projectId: "k-filmy-movies",
+      storageBucket: "k-filmy-movies.firebasestorage.app",
+      messagingSenderId: "638265445029",
+      appId: "1:638265445029:web:d6138efd0e12de4f6d5b4c",
+      measurementId: "G-9ZPFG9T558"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (!user) {
+        window.location.href = "admin-login.html";
+      }
+
+    });
+
+
+    window.logout = function() {
+
+      signOut(auth)
+        .then(() => {
+          window.location.href = "admin-login.html";
+        })
+        .catch(() => {
+          document.getElementById("message").innerText =
+            "❌ Logout failed.";
+        });
+
+    };
+
+  </script>
+
+</body>
+</html>
